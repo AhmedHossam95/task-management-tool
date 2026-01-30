@@ -1,0 +1,27 @@
+$border-radius: (
+  sm: 4px,
+  md: 8px,
+  lg: 12px,
+  xl: 16px,
+  xxl: 20px,
+);
+
+@mixin generate-border-radius-vars($radius) {
+  @each $name, $size in $radius {
+    --br-#{$name}: #{$size};
+  }
+}
+
+:root {
+  @include generate-border-radius-vars($border-radius);
+}
+
+@mixin generate-border-radius-classes($radius) {
+  @each $name, $size in $radius {
+    .br-#{$name} {
+      border-radius: var(--br-#{$name});
+    }
+  }
+}
+
+@include generate-border-radius-classes($border-radius);
