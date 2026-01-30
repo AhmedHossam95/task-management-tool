@@ -1,10 +1,10 @@
 <mat-toolbar class="header">
-  @if (isMobile()) {
+  @if (isSmallScreen()) {
     <button aria-label="Toggle sidenav" matIconButton type="button" (click)="toggleSidenav.emit()">
       <mat-icon>menu</mat-icon>
     </button>
   } @else {
     <img alt="App Logo" class="logo" height="32" ngSrc="{{ logo }}" width="32" />
   }
-  <h1 class="title">{{ title }}</h1>
+  <h1 class="ms-2 fs-lg fc-primary">{{ title }}</h1>
 </mat-toolbar>

@@ -12,7 +12,7 @@ import { NgOptimizedImage } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Header {
-  readonly isMobile = input<boolean>(false);
+  readonly isSmallScreen = input<boolean>(false);
   protected readonly toggleSidenav = output<void>();
   protected readonly logo = 'assets/icons/logo.png';
   protected readonly title = 'Taskito';
