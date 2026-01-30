@@ -6,6 +6,10 @@ $border-radius: (
   xxl: 20px,
 );
 
+.light-shadow {
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.08);
+}
+
 @mixin generate-border-radius-vars($radius) {
   @each $name, $size in $radius {
     --br-#{$name}: #{$size};
