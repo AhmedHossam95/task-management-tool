@@ -1,0 +1,101 @@
+$font-sizes: (
+  2xs: 0.625rem,
+  xs: 0.75rem,
+  sm: 0.85rem,
+  md: 1rem,
+  lg: 1.125rem,
+  xl: 1.5rem,
+  2xl: 1.75rem,
+  3xl: 2.125rem,
+);
+
+$font-weights: (
+  light: 300,
+  regular: 400,
+  medium: 500,
+  semibold: 600,
+  bold: 700,
+);
+
+.fc-error-light {
+  color: var(--mat-sys-error-container);
+}
+
+.fc-error {
+  color: var(--mat-sys-error);
+}
+
+.fc-warning-light {
+  color: var(--mat-sys-tertiary-container);
+}
+
+.fc-warning {
+  color: var(--mat-sys-tertiary);
+}
+
+.fc-success-light {
+  color: var(--success-light);
+}
+
+.fc-success {
+  color: var(--success);
+}
+
+.fc-primary {
+  color: var(--mat-sys-primary);
+}
+
+.fc-white {
+  color: var(--mat-sys-surface);
+}
+
+.fc-black {
+  color: var(--mat-sys-on-surface);
+}
+
+.fc-gray {
+  color: var(--gray);
+}
+
+.fc-light-gray {
+  color: var(--light-gray);
+}
+
+@mixin generate-font-size-classes($sizes) {
+  @each $name, $size in $sizes {
+    .fs-#{$name} {
+      font-size: $size;
+    }
+  }
+}
+
+@mixin generate-font-weight-classes($weights) {
+  @each $name, $weight in $weights {
+    .fw-#{$name} {
+      font-weight: $weight;
+    }
+  }
+}
+
+@include generate-font-size-classes($font-sizes);
+@include generate-font-weight-classes($font-weights);
+
+// Mixin to generate CSS variables for font sizes
+@mixin generate-font-size-vars($sizes) {
+  @each $name, $size in $sizes {
+    --fs-#{$name}: #{$size};
+  }
+}
+
+// Mixin to generate CSS variables for font weights
+@mixin generate-font-weight-vars($weights) {
+  @each $name, $weight in $weights {
+    --fw-#{$name}: #{$weight};
+  }
+}
+
+// Generate CSS variables at root level
+:root {
+  @include generate-font-size-vars($font-sizes);
+  @include generate-font-weight-vars($font-weights);
+}
