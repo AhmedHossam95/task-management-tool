@@ -11,7 +11,7 @@ import { NgOptimizedImage } from '@angular/common';
   styleUrl: './header.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Header {
+export class HeaderComponent {
   readonly isSmallScreen = input<boolean>(false);
   protected readonly toggleSidenav = output<void>();
   protected readonly logo = 'assets/icons/logo.png';

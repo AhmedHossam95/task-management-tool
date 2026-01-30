@@ -15,7 +15,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { TitleCasePipe } from '@angular/common';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { Header } from './shared/components/header/header';
+import { HeaderComponent } from './shared/components/header/header';
 import { SIDENAV_ROUTES } from './shared/constants/sidenav.constants';
 import { Route } from './shared/models/sidenav.model';
 
@@ -31,7 +31,7 @@ import { Route } from './shared/models/sidenav.model';
     TitleCasePipe,
     RouterLinkActive,
     RouterLink,
-    Header,
+    HeaderComponent,
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss',

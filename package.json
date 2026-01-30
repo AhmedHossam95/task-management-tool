@@ -9,7 +9,10 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
-    "prepare": "husky"
+    "prepare": "husky",
+    "generate-data": "node src/assets/data-fetching/generate-data.js",
+    "server": "json-server --watch db.json --port 3000",
+    "start:dev": "concurrently \"npm run start\" \"npm run server\""
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx,html,json,md}": "eslint --fix"
@@ -46,11 +49,13 @@
     "@angular/compiler-cli": "^20.3.0",
     "@types/jasmine": "~5.1.0",
     "angular-eslint": "20.3.0",
+    "concurrently": "^9.2.1",
     "eslint": "^9.35.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.5",
     "husky": "^9.1.7",
     "jasmine-core": "~5.9.0",
+    "json-server": "^1.0.0-beta.5",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
     "karma-coverage": "~2.2.0",
