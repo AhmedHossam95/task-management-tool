@@ -43,4 +43,6 @@
 
 .sidenav-content {
   padding: 32px;
+  // substract navbar height
+  height: calc(100% - 64px);
 }

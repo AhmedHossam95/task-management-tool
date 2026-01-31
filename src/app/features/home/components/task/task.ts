@@ -1,12 +1,13 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { Task } from '../../models/tasks.model';
-import { TitleCasePipe, UpperCasePipe } from '@angular/common';
+import { UpperCasePipe } from '@angular/common';
 import { MatDividerModule } from '@angular/material/divider';
 import { NameLettersPipe } from '../../pipes/name-letters-pipe';
+import { DueDateStatusPipe } from '../../pipes/due-date-status-pipe';
 
 @Component({
   selector: 'app-task',
-  imports: [TitleCasePipe, MatDividerModule, NameLettersPipe, UpperCasePipe],
+  imports: [MatDividerModule, NameLettersPipe, UpperCasePipe, DueDateStatusPipe],
   templateUrl: './task.html',
   styleUrl: './task.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -8,14 +8,16 @@
     [class.fc-success]="task()?.priority === 'low'"
     [class.fc-warning]="task()?.priority === 'medium'"
   >
-    {{ task()?.priority | titlecase }}
+    {{ task()?.priority | uppercase }}
   </p>
   <div class="task-card-header">
     <h3 class="task-card-title fw-bold fs-md fc-black">{{ task()?.title }}</h3>
     <p class="task-card-description fw-regular fs-sm fc-gray">{{ task()?.description }}</p>
   </div>
   <div>
-    <p class="task-card-due-date fw-regular fs-xs fc-gray">{{ task()?.dueDate }}</p>
+    <p class="task-card-due-date fw-regular fs-2xs fc-gray">
+      {{ task()?.dueDate | dueDateStatus: task() }}
+    </p>
     <p class="task-card-tags fw-regular fs-sm fc-gray">{{ task()?.tags?.join(', ') }}</p>
   </div>
   <mat-divider />
