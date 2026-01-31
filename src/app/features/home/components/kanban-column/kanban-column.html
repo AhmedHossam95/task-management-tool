@@ -1,0 +1,30 @@
+<article class="kanban-column br-md bg-white d-flex flex-column gap-3 p-3">
+  <header class="d-flex align-items-center justify-content-between gap-2 pb-1 border-light-bottom">
+    <h2 class="fw-semibold fs-md">{{ title() }}</h2>
+    <span
+      class="fw-semibold fs-xs br-lg p-1 bg-primary fc-white kanban-column-count d-flex align-items-center justify-content-center"
+      >{{ count() }}</span
+    >
+  </header>
+
+  <div
+    cdkDropList
+    class="kanban-column-content d-flex flex-column gap-3"
+    [cdkDropListConnectedTo]="connectedTo()"
+    [cdkDropListData]="tasks()"
+    [id]="columnId()"
+    (cdkDropListDropped)="onDrop($event)"
+  >
+    @for (task of tasks(); track task.id) {
+      <app-task
+        cdkDrag
+        [cdkDragData]="task"
+        [cdkDragDisabled]="!dragEnabled()"
+        [task]="task"
+        (taskClick)="onTaskClick($event)"
+      />
+    } @empty {
+      <p class="fw-semibold fs-lg fc-gray text-center italic p-4">No tasks</p>
+    }
+  </div>
+</article>

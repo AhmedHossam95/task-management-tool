@@ -1,0 +1,118 @@
+<div
+  class="d-flex flex-column-reverse flex-lg-row align-items-lg-center justify-content-lg-between gap-2 p-3 bg-white br-md mb-3"
+>
+  <!-- Status Tabs -->
+  <div class="d-flex align-items-center gap-2 status-tabs flex-wrap">
+    @for (option of statusOptions; track option.value) {
+      <button
+        class="py-2 px-3 br-sm fs-sm fw-medium status-tab"
+        type="button"
+        [class.active]="isStatusActive(option.value)"
+        (click)="onStatusChange(option.value)"
+      >
+        {{ option.label }}
+      </button>
+    }
+  </div>
+
+  <!-- Right side controls -->
+  <div class="d-flex align-items-center flex-wrap gap-2">
+    <!-- Search Input -->
+    <mat-form-field appearance="outline" class="search-field flex-grow-1 flex-lg-grow-0">
+      <mat-icon matPrefix>search</mat-icon>
+      <input
+        class="fs-sm"
+        matInput
+        placeholder="Search tasks..."
+        [value]="searchInput()"
+        (input)="onSearchInput($any($event.target).value)"
+      />
+      @if (searchInput()) {
+        <button mat-icon-button matSuffix type="button" (click)="clearSearch()">
+          <mat-icon>close</mat-icon>
+        </button>
+      }
+    </mat-form-field>
+
+    <!-- Priority Filter -->
+    <mat-form-field appearance="outline" class="priority-field flex-shrink-0">
+      <mat-select
+        class="fs-sm"
+        [value]="filterService.priorityFilter()"
+        (selectionChange)="filterService.setPriority($event.value)"
+      >
+        @for (option of priorityOptions; track option.value) {
+          <mat-option class="fs-sm" [value]="option.value">{{ option.label }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Assignee Filter -->
+    <mat-form-field appearance="outline" class="assignee-field flex-shrink-0">
+      <mat-select
+        class="fs-sm"
+        [value]="filterService.assigneeFilter()"
+        (selectionChange)="filterService.setAssignee($event.value)"
+      >
+        <mat-select-trigger>
+          {{ selectedAssigneeLabel() }}
+        </mat-select-trigger>
+        <mat-option class="fs-sm" value="all">All Assignees</mat-option>
+        @for (user of users(); track user.id) {
+          <mat-option [value]="user.id">
+            <div class="d-flex align-items-center gap-2">
+              <app-assignee-avatar [assigneeName]="user.name" />
+              <div class="d-flex flex-column">
+                <span class="fs-sm">{{ user.name }}</span>
+                <span class="fs-xs fc-gray">{{ user.email }}</span>
+              </div>
+            </div>
+          </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Sort Menu Trigger -->
+    <button
+      class="d-flex align-items-center gap-1 fs-sm px-3 br-sm flex-shrink-0"
+      matButton="tonal"
+      type="button"
+      [matMenuTriggerFor]="sortMenu"
+    >
+      <mat-icon>sort</mat-icon>
+      <span class="mx-1">{{ currentSortLabel() }}</span>
+      <mat-icon>arrow_drop_down</mat-icon>
+    </button>
+
+    <!-- Sort Menu -->
+    <mat-menu #sortMenu="matMenu">
+      @for (option of sortOptions; track option.field + option.order) {
+        <button
+          mat-menu-item
+          type="button"
+          [class.selected]="isSortOptionSelected(option)"
+          (click)="filterService.setSort(option.field, option.order)"
+        >
+          @if (isSortOptionSelected(option)) {
+            <mat-icon>check</mat-icon>
+          } @else {
+            <mat-icon />
+          }
+          <span>{{ option.label }}</span>
+        </button>
+      }
+    </mat-menu>
+
+    <!-- Create Task Button -->
+    <button
+      class="d-flex align-items-center gap-1 flex-shrink-0 br-sm"
+      color="primary"
+      mat-flat-button
+      type="button"
+      (click)="onCreateTask()"
+    >
+      <mat-icon>add</mat-icon>
+      <span>Task</span>
+    </button>
+  </div>
+</div>

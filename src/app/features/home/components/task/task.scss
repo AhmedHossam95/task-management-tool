@@ -1,0 +1,59 @@
+.task-card {
+  max-width: 400px;
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+
+  &.clickable {
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+      transform: translateY(-2px);
+    }
+
+    &:focus {
+      outline: 2px solid var(--mat-sys-primary);
+      outline-offset: 2px;
+    }
+  }
+
+  &.overdue {
+    border-inline-start: 4px solid var(--mat-sys-error);
+  }
+
+  .task-card-status {
+    width: fit-content;
+
+    &.low {
+      background-color: var(--success-light);
+      color: var(--success);
+    }
+
+    &.medium {
+      background-color: var(--mat-sys-tertiary-container);
+      color: var(--mat-sys-tertiary);
+    }
+
+    &.high {
+      background-color: var(--mat-sys-error-container);
+      color: var(--mat-sys-error);
+    }
+  }
+
+  .task-card-description {
+    // TODO: make a mixin for this
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 40px;
+  }
+}
+
+.mat-divider {
+  --mat-divider-color: var(--mat-sys-surface-variant);
+}

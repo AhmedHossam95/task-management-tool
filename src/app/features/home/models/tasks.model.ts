@@ -22,6 +22,7 @@ export type Task = {
   tags: string[];
   createdAt: string;
   updatedAt: string;
+  order: number; // Position within status column (0 = top)
 };
 
 export type TasksResponse = {
@@ -32,8 +33,18 @@ export type TasksResponse = {
   };
 };
 
-/** DTO for creating a new task (without id, createdAt, updatedAt) */
-export type CreateTaskDto = Omit<Task, 'id' | 'createdAt' | 'updatedAt'>;
+/** DTO for creating a new task (without id, createdAt, updatedAt, order) */
+export type CreateTaskDto = Omit<Task, 'id' | 'createdAt' | 'updatedAt' | 'order'>;
 
 /** DTO for updating a task (all fields optional except id) */
 export type UpdateTaskDto = Partial<Omit<Task, 'id'>> & { id: string };
+
+/** Form value type for task creation/editing */
+export type TaskFormValue = {
+  title: string;
+  description: string;
+  priority: TaskPriority;
+  dueDate: string | Date;
+  assignee: string; // Assignee ID
+  tags: string[];
+};

@@ -1,0 +1,79 @@
+// Status tab - only custom styles that can't be replaced by utilities
+.status-tab {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.15s ease;
+  color: var(--mat-sys-on-surface-variant, #666);
+
+  &:hover:not(.active) {
+    background: var(--mat-sys-surface-container, #e8e8e8);
+  }
+
+  &.active {
+    background: var(--mat-sys-primary, #1976d2);
+    color: var(--mat-sys-on-primary, #fff);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  }
+}
+
+// Scrollable status tabs - hide scrollbar
+
+// Form fields - Material compact appearance overrides
+.search-field,
+.priority-field,
+.assignee-field {
+  ::ng-deep {
+    .mat-mdc-form-field-subscript-wrapper {
+      display: none;
+    }
+
+    .mat-mdc-text-field-wrapper {
+      height: 40px;
+    }
+
+    .mat-mdc-form-field-infix {
+      padding-top: 8px;
+      padding-bottom: 8px;
+      min-height: 40px;
+    }
+
+    .mdc-notched-outline__notch {
+      border-right: none;
+    }
+  }
+}
+
+.search-field {
+  width: 220px;
+  min-width: 180px;
+
+  ::ng-deep {
+    .mat-mdc-form-field-icon-prefix {
+      padding-left: 12px;
+      padding-right: 4px;
+      color: var(--mat-sys-on-surface-variant, #666);
+    }
+  }
+}
+
+.priority-field {
+  width: 150px;
+}
+
+.assignee-field {
+  width: 200px;
+
+  // Taller dropdown options for avatar + name + email layout
+  ::ng-deep .mat-mdc-option {
+    height: auto;
+    min-height: 48px;
+    padding: 8px 16px;
+  }
+}
+
+// Selected menu item styling
+::ng-deep .mat-mdc-menu-item.selected {
+  background: var(--mat-sys-primary-container, #e3f2fd);
+}

@@ -4,7 +4,7 @@
       "id": "task-001",
       "title": "Design new homepage layout",
       "description": "Create wireframes and mockups for the new homepage redesign with modern UI elements",
-      "status": "todo",
+      "status": "done",
       "priority": "high",
       "dueDate": "2026-02-01",
       "assignee": {
@@ -17,13 +17,16 @@
         "Design"
       ],
       "createdAt": "2026-01-28T16:40:21.287Z",
-      "updatedAt": "2026-01-30T16:40:21.287Z"
+      "updatedAt": "2026-01-31T12:42:34.359Z",
+      "order": 1,
+      "completedAt": "2026-01-31T12:42:34.359Z",
+      "isOverdue": false
     },
     {
       "id": "task-002",
       "title": "Update documentation",
       "description": "Review and update API documentation for v2.0 release",
-      "status": "todo",
+      "status": "done",
       "priority": "medium",
       "dueDate": "2026-02-04",
       "assignee": {
@@ -36,13 +39,16 @@
         "Documentation"
       ],
       "createdAt": "2026-01-27T16:40:21.287Z",
-      "updatedAt": "2026-01-29T16:40:21.287Z"
+      "updatedAt": "2026-01-31T13:37:18.482Z",
+      "order": 4,
+      "completedAt": "2026-01-31T12:43:00.969Z",
+      "isOverdue": false
     },
     {
       "id": "task-003",
       "title": "Organize team meeting",
       "description": "Schedule and prepare agenda for quarterly planning session",
-      "status": "todo",
+      "status": "done",
       "priority": "low",
       "dueDate": "2026-02-06",
       "assignee": {
@@ -55,7 +61,53 @@
         "Admin"
       ],
       "createdAt": "2026-01-26T16:40:21.287Z",
-      "updatedAt": "2026-01-29T16:40:21.287Z"
+      "updatedAt": "2026-01-31T14:01:35.426Z",
+      "order": 1,
+      "completedAt": "2026-01-31T12:56:50.629Z",
+      "isOverdue": false
+    },
+    {
+      "id": "task-004",
+      "title": "Fix responsive design issues",
+      "description": "Address layout problems on mobile and tablet devices",
+      "status": "done",
+      "priority": "high",
+      "dueDate": "2026-02-02",
+      "assignee": {
+        "id": "user-004",
+        "name": "Emily Davis",
+        "avatar": "ED",
+        "email": "emily.davis@company.com"
+      },
+      "tags": [
+        "Frontend"
+      ],
+      "createdAt": "2026-01-25T16:40:21.287Z",
+      "updatedAt": "2026-01-31T14:01:35.427Z",
+      "order": 2,
+      "completedAt": "2026-01-31T13:37:18.482Z",
+      "isOverdue": false
+    },
+    {
+      "id": "task-016",
+      "title": "Review client feedback",
+      "description": "Analyze customer feedback from user testing sessions",
+      "status": "in_progress",
+      "priority": "medium",
+      "dueDate": "2026-01-27",
+      "isOverdue": true,
+      "assignee": {
+        "id": "user-004",
+        "name": "Emily Davis",
+        "avatar": "ED",
+        "email": "emily.davis@company.com"
+      },
+      "tags": [
+        "Research"
+      ],
+      "createdAt": "2026-01-15T16:40:21.287Z",
+      "updatedAt": "2026-01-31T14:03:10.918Z",
+      "order": 2
     },
     {
       "id": "task-015",
@@ -75,46 +127,30 @@
         "Finance"
       ],
       "createdAt": "2026-01-14T16:40:21.287Z",
-      "updatedAt": "2026-01-30T16:40:21.287Z"
+      "updatedAt": "2026-01-31T12:42:51.870Z",
+      "order": 3
     },
     {
-      "id": "task-016",
-      "title": "Review client feedback",
-      "description": "Analyze customer feedback from user testing sessions",
-      "status": "todo",
+      "id": "task-006",
+      "title": "Optimize database queries",
+      "description": "Review and optimize slow queries identified in performance audit",
+      "status": "done",
       "priority": "medium",
-      "dueDate": "2026-01-27",
-      "isOverdue": true,
+      "dueDate": "2026-02-03",
       "assignee": {
-        "id": "user-004",
-        "name": "Emily Davis",
-        "avatar": "ED",
-        "email": "emily.davis@company.com"
+        "id": "user-002",
+        "name": "Sarah Smith",
+        "avatar": "SS",
+        "email": "sarah.smith@company.com"
       },
       "tags": [
-        "Research"
+        "Performance"
       ],
-      "createdAt": "2026-01-15T16:40:21.287Z",
-      "updatedAt": "2026-01-29T16:40:21.287Z"
-    },
-    {
-      "id": "task-004",
-      "title": "Fix responsive design issues",
-      "description": "Address layout problems on mobile and tablet devices",
-      "status": "todo",
-      "priority": "high",
-      "dueDate": "2026-02-02",
-      "assignee": {
-        "id": "user-004",
-        "name": "Emily Davis",
-        "avatar": "ED",
-        "email": "emily.davis@company.com"
-      },
-      "tags": [
-        "Frontend"
-      ],
-      "createdAt": "2026-01-25T16:40:21.287Z",
-      "updatedAt": "2026-01-30T16:40:21.287Z"
+      "createdAt": "2026-01-24T16:40:21.287Z",
+      "updatedAt": "2026-01-31T13:37:18.482Z",
+      "order": 7,
+      "completedAt": "2026-01-31T12:37:53.333Z",
+      "isOverdue": false
     },
     {
       "id": "task-005",
@@ -133,32 +169,14 @@
         "Backend"
       ],
       "createdAt": "2026-01-23T16:40:21.287Z",
-      "updatedAt": "2026-01-30T16:40:21.287Z"
-    },
-    {
-      "id": "task-006",
-      "title": "Optimize database queries",
-      "description": "Review and optimize slow queries identified in performance audit",
-      "status": "in_progress",
-      "priority": "medium",
-      "dueDate": "2026-02-03",
-      "assignee": {
-        "id": "user-002",
-        "name": "Sarah Smith",
-        "avatar": "SS",
-        "email": "sarah.smith@company.com"
-      },
-      "tags": [
-        "Performance"
-      ],
-      "createdAt": "2026-01-24T16:40:21.287Z",
-      "updatedAt": "2026-01-29T16:40:21.287Z"
+      "updatedAt": "2026-01-31T14:03:10.918Z",
+      "order": 3
     },
     {
       "id": "task-007",
       "title": "Create API endpoints",
       "description": "Develop RESTful API endpoints for task management features",
-      "status": "in_progress",
+      "status": "done",
       "priority": "high",
       "dueDate": "2026-02-01",
       "assignee": {
@@ -171,13 +189,16 @@
         "Backend"
       ],
       "createdAt": "2026-01-22T16:40:21.287Z",
-      "updatedAt": "2026-01-30T16:40:21.287Z"
+      "updatedAt": "2026-01-31T13:37:18.482Z",
+      "order": 5,
+      "completedAt": "2026-01-31T12:42:46.078Z",
+      "isOverdue": false
     },
     {
       "id": "task-008",
       "title": "Add dark mode support",
       "description": "Implement theme toggle with dark/light mode preferences",
-      "status": "in_progress",
+      "status": "done",
       "priority": "medium",
       "dueDate": "2026-02-05",
       "assignee": {
@@ -190,7 +211,10 @@
         "Frontend"
       ],
       "createdAt": "2026-01-21T16:40:21.287Z",
-      "updatedAt": "2026-01-29T16:40:21.287Z"
+      "updatedAt": "2026-01-31T13:37:18.482Z",
+      "order": 3,
+      "completedAt": "2026-01-31T12:41:41.752Z",
+      "isOverdue": false
     },
     {
       "id": "task-017",
@@ -211,13 +235,14 @@
         "Critical"
       ],
       "createdAt": "2026-01-16T16:40:21.287Z",
-      "updatedAt": "2026-01-30T16:40:21.287Z"
+      "updatedAt": "2026-01-31T14:03:10.917Z",
+      "order": 0
     },
     {
       "id": "task-009",
       "title": "Fix critical login bug",
       "description": "Resolved issue preventing users from logging in on mobile devices",
-      "status": "done",
+      "status": "in_progress",
       "priority": "high",
       "dueDate": "2026-01-29",
       "completedAt": "2026-01-30T16:40:21.287Z",
@@ -231,7 +256,8 @@
         "Bug Fix"
       ],
       "createdAt": "2026-01-28T16:40:21.287Z",
-      "updatedAt": "2026-01-30T16:40:21.287Z"
+      "updatedAt": "2026-01-31T14:03:10.918Z",
+      "order": 1
     },
     {
       "id": "task-010",
@@ -251,7 +277,8 @@
         "DevOps"
       ],
       "createdAt": "2026-01-21T16:40:21.287Z",
-      "updatedAt": "2026-01-29T16:40:21.287Z"
+      "updatedAt": "2026-01-31T13:37:18.482Z",
+      "order": 6
     },
     {
       "id": "task-011",
@@ -271,7 +298,8 @@
         "Testing"
       ],
       "createdAt": "2026-01-20T16:40:21.287Z",
-      "updatedAt": "2026-01-28T16:40:21.287Z"
+      "updatedAt": "2026-01-31T13:37:18.482Z",
+      "order": 9
     },
     {
       "id": "task-012",
@@ -291,7 +319,8 @@
         "Refactoring"
       ],
       "createdAt": "2026-01-18T16:40:21.287Z",
-      "updatedAt": "2026-01-27T16:40:21.287Z"
+      "updatedAt": "2026-01-31T13:37:18.482Z",
+      "order": 8
     },
     {
       "id": "task-013",
@@ -311,7 +340,8 @@
         "Security"
       ],
       "createdAt": "2026-01-17T16:40:21.287Z",
-      "updatedAt": "2026-01-26T16:40:21.287Z"
+      "updatedAt": "2026-01-31T13:37:18.482Z",
+      "order": 10
     },
     {
       "id": "task-014",
@@ -331,7 +361,8 @@
         "Maintenance"
       ],
       "createdAt": "2026-01-16T16:40:21.287Z",
-      "updatedAt": "2026-01-25T16:40:21.287Z"
+      "updatedAt": "2026-01-31T13:37:18.482Z",
+      "order": 11
     }
   ],
   "statistics": [
@@ -374,6 +405,32 @@
       "changeLabel": "today",
       "changeType": "negative",
       "color": "#D32F2F"
+    }
+  ],
+  "users": [
+    {
+      "id": "user-001",
+      "name": "John Doe",
+      "avatar": "JD",
+      "email": "john.doe@company.com"
+    },
+    {
+      "id": "user-002",
+      "name": "Sarah Smith",
+      "avatar": "SS",
+      "email": "sarah.smith@company.com"
+    },
+    {
+      "id": "user-003",
+      "name": "Mike Johnson",
+      "avatar": "MJ",
+      "email": "mike.johnson@company.com"
+    },
+    {
+      "id": "user-004",
+      "name": "Emily Davis",
+      "avatar": "ED",
+      "email": "emily.davis@company.com"
     }
   ]
 }

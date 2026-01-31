@@ -1,0 +1,28 @@
+<section
+  class="task-card br-md border-light p-3 d-flex flex-column gap-3 white-bg clickable"
+  role="button"
+  tabindex="0"
+  [class.bg-error-light]="task()?.isOverdue"
+  [class.overdue]="task()?.isOverdue"
+  (click)="onTaskClick()"
+  (keydown.enter)="onTaskClick()"
+>
+  <p class="task-card-status px-2 py-1 br-sm fw-bold fs-xs {{ task()?.priority }}">
+    {{ task()?.priority | uppercase }}
+  </p>
+  <div class="task-card-header">
+    <h3 class="task-card-title fw-bold fs-md fc-black">{{ task()?.title }}</h3>
+    <p class="task-card-description fw-regular fs-sm fc-gray">{{ task()?.description }}</p>
+  </div>
+  <div>
+    <p class="task-card-due-date fw-regular fs-2xs fc-gray">
+      {{ task()?.dueDate | dueDateStatus: task() }}
+    </p>
+    <p class="task-card-tags fw-regular fs-sm fc-gray">{{ task()?.tags?.join(', ') }}</p>
+  </div>
+  <mat-divider />
+  <div class="d-flex align-items-center gap-1">
+    <app-assignee-avatar [assigneeName]="task()?.assignee?.name" />
+    <p class="task-card-assignee-name fw-regular fs-xs fc-black">@{{ task()?.assignee?.name }}</p>
+  </div>
+</section>

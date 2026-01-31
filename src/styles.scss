@@ -10,6 +10,8 @@
 @import 'app/styles/typography.scss';
 @import 'app/styles/borders.scss';
 @import 'app/styles/backgrounds.scss';
+@import 'app/styles/spacing.scss';
+@import 'app/styles/custom-material.scss';
 
 html {
   @include mat.theme(
@@ -19,7 +21,7 @@ html {
         tertiary: theme.$tertiary-palette,
         theme-type: light,
       ),
-      typography: Roboto,
+      typography: Inter,
       density: 0,
     )
   );
@@ -49,6 +51,16 @@ body {
 }
 body {
   margin: 0;
-  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  font-family: Inter, 'Helvetica Neue', sans-serif;
   font-size: 16px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
 }
