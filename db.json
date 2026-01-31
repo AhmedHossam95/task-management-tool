@@ -4,7 +4,7 @@
       "id": "task-001",
       "title": "Design new homepage layout",
       "description": "Create wireframes and mockups for the new homepage redesign with modern UI elements",
-      "status": "todo",
+      "status": "done",
       "priority": "high",
       "dueDate": "2026-02-01",
       "assignee": {
@@ -17,13 +17,16 @@
         "Design"
       ],
       "createdAt": "2026-01-28T16:40:21.287Z",
-      "updatedAt": "2026-01-30T16:40:21.287Z"
+      "updatedAt": "2026-01-31T12:42:34.359Z",
+      "order": 1,
+      "completedAt": "2026-01-31T12:42:34.359Z",
+      "isOverdue": false
     },
     {
       "id": "task-002",
       "title": "Update documentation",
       "description": "Review and update API documentation for v2.0 release",
-      "status": "todo",
+      "status": "done",
       "priority": "medium",
       "dueDate": "2026-02-04",
       "assignee": {
@@ -36,13 +39,16 @@
         "Documentation"
       ],
       "createdAt": "2026-01-27T16:40:21.287Z",
-      "updatedAt": "2026-01-29T16:40:21.287Z"
+      "updatedAt": "2026-01-31T12:43:00.969Z",
+      "order": 3,
+      "completedAt": "2026-01-31T12:43:00.969Z",
+      "isOverdue": false
     },
     {
       "id": "task-003",
       "title": "Organize team meeting",
       "description": "Schedule and prepare agenda for quarterly planning session",
-      "status": "todo",
+      "status": "in_progress",
       "priority": "low",
       "dueDate": "2026-02-06",
       "assignee": {
@@ -55,27 +61,28 @@
         "Admin"
       ],
       "createdAt": "2026-01-26T16:40:21.287Z",
-      "updatedAt": "2026-01-29T16:40:21.287Z"
+      "updatedAt": "2026-01-31T12:41:44.736Z",
+      "order": 1
     },
     {
-      "id": "task-015",
-      "title": "Prepare Q4 budget report",
-      "description": "Compile and analyze financial data for quarterly budget presentation",
-      "status": "todo",
+      "id": "task-004",
+      "title": "Fix responsive design issues",
+      "description": "Address layout problems on mobile and tablet devices",
+      "status": "in_progress",
       "priority": "high",
-      "dueDate": "2026-01-28",
-      "isOverdue": true,
+      "dueDate": "2026-02-02",
       "assignee": {
-        "id": "user-002",
-        "name": "Sarah Smith",
-        "avatar": "SS",
-        "email": "sarah.smith@company.com"
+        "id": "user-004",
+        "name": "Emily Davis",
+        "avatar": "ED",
+        "email": "emily.davis@company.com"
       },
       "tags": [
-        "Finance"
+        "Frontend"
       ],
-      "createdAt": "2026-01-14T16:40:21.287Z",
-      "updatedAt": "2026-01-30T16:40:21.287Z"
+      "createdAt": "2026-01-25T16:40:21.287Z",
+      "updatedAt": "2026-01-31T12:41:44.736Z",
+      "order": 0
     },
     {
       "id": "task-016",
@@ -95,26 +102,51 @@
         "Research"
       ],
       "createdAt": "2026-01-15T16:40:21.287Z",
-      "updatedAt": "2026-01-29T16:40:21.287Z"
+      "updatedAt": "2026-01-31T12:42:56.717Z",
+      "order": 1
     },
     {
-      "id": "task-004",
-      "title": "Fix responsive design issues",
-      "description": "Address layout problems on mobile and tablet devices",
+      "id": "task-015",
+      "title": "Prepare Q4 budget report",
+      "description": "Compile and analyze financial data for quarterly budget presentation",
       "status": "todo",
       "priority": "high",
-      "dueDate": "2026-02-02",
+      "dueDate": "2026-01-28",
+      "isOverdue": true,
       "assignee": {
-        "id": "user-004",
-        "name": "Emily Davis",
-        "avatar": "ED",
-        "email": "emily.davis@company.com"
+        "id": "user-002",
+        "name": "Sarah Smith",
+        "avatar": "SS",
+        "email": "sarah.smith@company.com"
       },
       "tags": [
-        "Frontend"
+        "Finance"
       ],
-      "createdAt": "2026-01-25T16:40:21.287Z",
-      "updatedAt": "2026-01-30T16:40:21.287Z"
+      "createdAt": "2026-01-14T16:40:21.287Z",
+      "updatedAt": "2026-01-31T12:42:51.870Z",
+      "order": 3
+    },
+    {
+      "id": "task-006",
+      "title": "Optimize database queries",
+      "description": "Review and optimize slow queries identified in performance audit",
+      "status": "done",
+      "priority": "medium",
+      "dueDate": "2026-02-03",
+      "assignee": {
+        "id": "user-002",
+        "name": "Sarah Smith",
+        "avatar": "SS",
+        "email": "sarah.smith@company.com"
+      },
+      "tags": [
+        "Performance"
+      ],
+      "createdAt": "2026-01-24T16:40:21.287Z",
+      "updatedAt": "2026-01-31T12:43:16.757Z",
+      "order": 6,
+      "completedAt": "2026-01-31T12:37:53.333Z",
+      "isOverdue": false
     },
     {
       "id": "task-005",
@@ -133,32 +165,14 @@
         "Backend"
       ],
       "createdAt": "2026-01-23T16:40:21.287Z",
-      "updatedAt": "2026-01-30T16:40:21.287Z"
-    },
-    {
-      "id": "task-006",
-      "title": "Optimize database queries",
-      "description": "Review and optimize slow queries identified in performance audit",
-      "status": "in_progress",
-      "priority": "medium",
-      "dueDate": "2026-02-03",
-      "assignee": {
-        "id": "user-002",
-        "name": "Sarah Smith",
-        "avatar": "SS",
-        "email": "sarah.smith@company.com"
-      },
-      "tags": [
-        "Performance"
-      ],
-      "createdAt": "2026-01-24T16:40:21.287Z",
-      "updatedAt": "2026-01-29T16:40:21.287Z"
+      "updatedAt": "2026-01-31T12:41:44.736Z",
+      "order": 2
     },
     {
       "id": "task-007",
       "title": "Create API endpoints",
       "description": "Develop RESTful API endpoints for task management features",
-      "status": "in_progress",
+      "status": "done",
       "priority": "high",
       "dueDate": "2026-02-01",
       "assignee": {
@@ -171,13 +185,16 @@
         "Backend"
       ],
       "createdAt": "2026-01-22T16:40:21.287Z",
-      "updatedAt": "2026-01-30T16:40:21.287Z"
+      "updatedAt": "2026-01-31T12:43:00.970Z",
+      "order": 4,
+      "completedAt": "2026-01-31T12:42:46.078Z",
+      "isOverdue": false
     },
     {
       "id": "task-008",
       "title": "Add dark mode support",
       "description": "Implement theme toggle with dark/light mode preferences",
-      "status": "in_progress",
+      "status": "done",
       "priority": "medium",
       "dueDate": "2026-02-05",
       "assignee": {
@@ -190,13 +207,16 @@
         "Frontend"
       ],
       "createdAt": "2026-01-21T16:40:21.287Z",
-      "updatedAt": "2026-01-29T16:40:21.287Z"
+      "updatedAt": "2026-01-31T12:42:34.359Z",
+      "order": 2,
+      "completedAt": "2026-01-31T12:41:41.752Z",
+      "isOverdue": false
     },
     {
       "id": "task-017",
       "title": "Update payment gateway integration",
       "description": "Migrate to new payment provider API and update billing logic",
-      "status": "in_progress",
+      "status": "todo",
       "priority": "high",
       "dueDate": "2026-01-29",
       "isOverdue": true,
@@ -211,7 +231,8 @@
         "Critical"
       ],
       "createdAt": "2026-01-16T16:40:21.287Z",
-      "updatedAt": "2026-01-30T16:40:21.287Z"
+      "updatedAt": "2026-01-31T12:42:51.870Z",
+      "order": 0
     },
     {
       "id": "task-009",
@@ -231,7 +252,8 @@
         "Bug Fix"
       ],
       "createdAt": "2026-01-28T16:40:21.287Z",
-      "updatedAt": "2026-01-30T16:40:21.287Z"
+      "updatedAt": "2026-01-30T16:40:21.287Z",
+      "order": 0
     },
     {
       "id": "task-010",
@@ -251,7 +273,8 @@
         "DevOps"
       ],
       "createdAt": "2026-01-21T16:40:21.287Z",
-      "updatedAt": "2026-01-29T16:40:21.287Z"
+      "updatedAt": "2026-01-31T12:43:00.970Z",
+      "order": 5
     },
     {
       "id": "task-011",
@@ -271,7 +294,8 @@
         "Testing"
       ],
       "createdAt": "2026-01-20T16:40:21.287Z",
-      "updatedAt": "2026-01-28T16:40:21.287Z"
+      "updatedAt": "2026-01-31T12:43:16.757Z",
+      "order": 8
     },
     {
       "id": "task-012",
@@ -291,7 +315,8 @@
         "Refactoring"
       ],
       "createdAt": "2026-01-18T16:40:21.287Z",
-      "updatedAt": "2026-01-27T16:40:21.287Z"
+      "updatedAt": "2026-01-31T12:43:16.757Z",
+      "order": 7
     },
     {
       "id": "task-013",
@@ -311,7 +336,8 @@
         "Security"
       ],
       "createdAt": "2026-01-17T16:40:21.287Z",
-      "updatedAt": "2026-01-26T16:40:21.287Z"
+      "updatedAt": "2026-01-31T12:43:00.970Z",
+      "order": 9
     },
     {
       "id": "task-014",
@@ -331,7 +357,8 @@
         "Maintenance"
       ],
       "createdAt": "2026-01-16T16:40:21.287Z",
-      "updatedAt": "2026-01-25T16:40:21.287Z"
+      "updatedAt": "2026-01-31T12:43:00.970Z",
+      "order": 10
     }
   ],
   "statistics": [
