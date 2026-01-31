@@ -25,16 +25,18 @@ export class HomeComponent {
   protected readonly columnIds = ['todo', 'in_progress', 'done'];
 
   onTaskDrop(event: CdkDragDrop<Task[]>): void {
-    if (event.previousContainer === event.container) {
-      // Reordering within same column - no status change needed
-      return;
-    }
-
-    // Get the new status from the container id
-    const newStatus = event.container.id as TaskStatus;
     const task = event.item.data as Task;
 
-    // Update task status via service
-    this.tasksService.updateTaskStatus(task.id, newStatus).subscribe();
+    if (event.previousContainer === event.container) {
+      // Same column reorder
+      if (event.previousIndex === event.currentIndex) return;
+
+      const status = event.container.id as TaskStatus;
+      this.tasksService.reorderTasksOptimistic(status, event.previousIndex, event.currentIndex);
+    } else {
+      // Cross-column move to exact drop position
+      const newStatus = event.container.id as TaskStatus;
+      this.tasksService.moveTaskToColumn(task, newStatus, event.currentIndex);
+    }
   }
 }
