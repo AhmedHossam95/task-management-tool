@@ -1,11 +1,21 @@
 import { Task, TaskPriority } from '../models/tasks.model';
-import { AssigneeFilter, PriorityFilter, TaskSortConfig } from '../models/task-filters.model';
+import { SortField, TaskSortConfig } from '../models/task-filters.model';
 
 /** Priority ordering for sorting (low = 0, medium = 1, high = 2) */
 const PRIORITY_ORDER: Record<TaskPriority, number> = {
   high: 2,
   medium: 1,
   low: 0,
+};
+
+/** Sort strategy function type */
+type SortStrategy = (a: Task, b: Task) => number;
+
+/** Sort strategies map - extensible without modifying sortTasks function */
+const SORT_STRATEGIES: Record<SortField, SortStrategy> = {
+  order: (a, b) => a.order - b.order,
+  priority: (a, b) => PRIORITY_ORDER[a.priority] - PRIORITY_ORDER[b.priority],
+  createdAt: (a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime(),
 };
 
 /**
@@ -15,59 +25,9 @@ const PRIORITY_ORDER: Record<TaskPriority, number> = {
  * @returns New sorted array of tasks
  */
 export function sortTasks(tasks: Task[], config: TaskSortConfig): Task[] {
+  const strategy = SORT_STRATEGIES[config.field];
   return [...tasks].sort((a, b) => {
-    let comparison = 0;
-
-    if (config.field === 'order') {
-      // Sort by manual drag-drop order
-      comparison = a.order - b.order;
-    } else if (config.field === 'priority') {
-      comparison = PRIORITY_ORDER[a.priority] - PRIORITY_ORDER[b.priority];
-    } else {
-      // Sort by createdAt
-      comparison = new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
-    }
-
+    const comparison = strategy(a, b);
     return config.order === 'asc' ? comparison : -comparison;
   });
-}
-
-/**
- * Filters tasks by search query across title and description
- * @param tasks - Array of tasks to search
- * @param query - Search query string
- * @returns Filtered array of tasks matching the query
- */
-export function searchTasks(tasks: Task[], query: string): Task[] {
-  const trimmedQuery = query.trim();
-  if (!trimmedQuery) return tasks;
-
-  const lowerQuery = trimmedQuery.toLowerCase();
-  return tasks.filter(
-    (task) =>
-      task.title.toLowerCase().includes(lowerQuery) ||
-      task.description.toLowerCase().includes(lowerQuery),
-  );
-}
-
-/**
- * Filters tasks by priority
- * @param tasks - Array of tasks to filter
- * @param priority - Priority filter value ('all' or specific priority)
- * @returns Filtered array of tasks
- */
-export function filterByPriority(tasks: Task[], priority: PriorityFilter): Task[] {
-  if (priority === 'all') return tasks;
-  return tasks.filter((task) => task.priority === priority);
-}
-
-/**
- * Filters tasks by assignee
- * @param tasks - Array of tasks to filter
- * @param assigneeId - Assignee filter value ('all' or specific user id)
- * @returns Filtered array of tasks
- */
-export function filterByAssignee(tasks: Task[], assigneeId: AssigneeFilter): Task[] {
-  if (assigneeId === 'all') return tasks;
-  return tasks.filter((task) => task.assignee.id === assigneeId);
 }

@@ -1,12 +1,14 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { toSignal } from '@angular/core/rxjs-interop';
 import {
   AssigneeFilter,
   DEFAULT_FILTERS,
+  PRIORITY_FILTER_OPTIONS,
   PriorityFilter,
+  SORT_OPTIONS,
   SortField,
   SortOrder,
+  STATUS_FILTER_OPTIONS,
   StatusFilter,
   TaskSortConfig,
 } from '../models/task-filters.model';
@@ -35,9 +37,6 @@ export class TasksFilterService {
 
   /** Whether drag-drop is enabled (only when sorting by manual order) */
   readonly isDragEnabled = computed(() => this.sortConfig().field === 'order');
-
-  /** Query params as signal for reactive URL sync */
-  private readonly queryParams = toSignal(this.route.queryParams, { initialValue: {} });
 
   constructor() {
     this.initFromUrl();
@@ -165,14 +164,14 @@ export class TasksFilterService {
   }
 
   private isValidStatus(value: string): boolean {
-    return ['all', 'todo', 'in_progress', 'done'].includes(value);
+    return STATUS_FILTER_OPTIONS.some((opt) => opt.value === value);
   }
 
   private isValidPriority(value: string): boolean {
-    return ['all', 'high', 'medium', 'low'].includes(value);
+    return PRIORITY_FILTER_OPTIONS.some((opt) => opt.value === value);
   }
 
   private isValidSortField(value: string): boolean {
-    return ['order', 'priority', 'createdAt'].includes(value);
+    return SORT_OPTIONS.some((opt) => opt.field === value);
   }
 }

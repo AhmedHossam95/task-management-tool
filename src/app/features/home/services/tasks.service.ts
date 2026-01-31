@@ -11,12 +11,8 @@ import { TASK_STATUS } from '../constants/tasks.constants';
 import { getStatusTransitionUpdates, withUpdatedTimestamp } from '../utils/tasks.utils';
 import { executeOptimisticUpdate } from '../utils/optimistic-update.util';
 import { TasksFilterService } from './tasks-filter.service';
-import {
-  filterByAssignee,
-  filterByPriority,
-  searchTasks,
-  sortTasks,
-} from '../utils/task-sort.util';
+import { sortTasks } from '../utils/task-sort.util';
+import { filterByAssignee, filterByPriority, searchTasks } from '../utils/task-filters.util';
 
 @Injectable({
   providedIn: 'root',

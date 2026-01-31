@@ -1,0 +1,21 @@
+// Toast notification styles
+.toast-success {
+  --mdc-snackbar-container-color: var(--success);
+  --mdc-snackbar-supporting-text-color: var(--on-success);
+}
+.toast-error {
+  --mdc-snackbar-container-color: var(--mat-sys-error);
+  --mdc-snackbar-supporting-text-color: var(--mat-sys-on-error);
+}
+.toast-warning {
+  --mdc-snackbar-container-color: var(--mat-sys-tertiary);
+  --mdc-snackbar-supporting-text-color: var(--mat-sys-on-tertiary);
+}
+.toast-info {
+  --mdc-snackbar-container-color: var(--mat-sys-secondary);
+  --mdc-snackbar-supporting-text-color: var(--mat-sys-on-secondary);
+}
+
+.mat-mdc-form-field {
+  --mat-form-field-outlined-outline-color: var(--mat-sys-outline-variant) !important;
+}
