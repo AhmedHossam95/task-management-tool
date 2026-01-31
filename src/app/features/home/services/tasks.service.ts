@@ -8,7 +8,11 @@ import { API_URL } from '../../../shared/constants/api.constants';
 import { ToastService } from '../../../shared/services/toast.service';
 import { withRetry } from '../../../shared/utils/http.utils';
 import { TASK_STATUS } from '../constants/tasks.constants';
-import { getStatusTransitionUpdates, withUpdatedTimestamp } from '../utils/tasks.utils';
+import {
+  formatDateForBackend,
+  getStatusTransitionUpdates,
+  withUpdatedTimestamp,
+} from '../utils/tasks.utils';
 import { executeOptimisticUpdate } from '../utils/optimistic-update.util';
 import { TasksFilterService } from './tasks-filter.service';
 import { sortTasks } from '../utils/task-sort.util';
@@ -258,5 +262,75 @@ export class TasksService {
       );
 
     return forkJoin([movedTaskUpdate, ...affectedUpdates]);
+  }
+
+  /**
+   * Create a new task
+   * Adds to the end of the todo column by default
+   */
+  createTask(taskData: Partial<Task>): void {
+    const todoTasks = this.tasks().filter((t) => t.status === TASK_STATUS.TODO);
+    const order = todoTasks.length;
+    const now = new Date().toISOString();
+
+    const newTask: Task = {
+      id: crypto.randomUUID(),
+      title: taskData.title ?? '',
+      description: taskData.description ?? '',
+      status: 'todo',
+      priority: taskData.priority ?? 'medium',
+      dueDate: formatDateForBackend(taskData.dueDate),
+      assignee: taskData.assignee!,
+      tags: taskData.tags ?? [],
+      createdAt: now,
+      updatedAt: now,
+      order,
+    };
+
+    executeOptimisticUpdate({
+      signal: this._tasks,
+      optimisticUpdate: (tasks) => [...tasks, newTask],
+      persistFn: () => this.http.post<Task>(`${API_URL.TASKS}`, newTask).pipe(withRetry()),
+      onError: () => this.toastService.error('Failed to create task. Please try again.'),
+      onSuccess: () => this.toastService.success('Task created successfully.'),
+    });
+  }
+
+  /**
+   * Update an existing task
+   */
+  updateTask(taskId: string, updates: Partial<Task>): void {
+    // Format dueDate if present in updates
+    const formattedUpdates = {
+      ...updates,
+      ...(updates.dueDate !== undefined && { dueDate: formatDateForBackend(updates.dueDate) }),
+    };
+
+    executeOptimisticUpdate({
+      signal: this._tasks,
+      optimisticUpdate: (tasks) =>
+        tasks.map((t) =>
+          t.id === taskId ? { ...t, ...formattedUpdates, updatedAt: new Date().toISOString() } : t,
+        ),
+      persistFn: () =>
+        this.http
+          .patch(`${API_URL.TASKS}/${taskId}`, withUpdatedTimestamp(formattedUpdates))
+          .pipe(withRetry()),
+      onError: () => this.toastService.error('Failed to update task. Please try again.'),
+      onSuccess: () => this.toastService.success('Task updated successfully.'),
+    });
+  }
+
+  /**
+   * Delete a task
+   */
+  deleteTask(taskId: string): void {
+    executeOptimisticUpdate({
+      signal: this._tasks,
+      optimisticUpdate: (tasks) => tasks.filter((t) => t.id !== taskId),
+      persistFn: () => this.http.delete(`${API_URL.TASKS}/${taskId}`).pipe(withRetry()),
+      onError: () => this.toastService.error('Failed to delete task. Please try again.'),
+      onSuccess: () => this.toastService.success('Task deleted successfully.'),
+    });
   }
 }

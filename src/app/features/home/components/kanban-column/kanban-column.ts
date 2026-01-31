@@ -20,8 +20,13 @@ export class KanbanColumnComponent {
   readonly dragEnabled = input<boolean>(true);
 
   readonly taskDropped = output<CdkDragDrop<Task[]>>();
+  readonly taskClick = output<Task>();
 
   onDrop(event: CdkDragDrop<Task[]>): void {
     this.taskDropped.emit(event);
+  }
+
+  onTaskClick(task: Task): void {
+    this.taskClick.emit(task);
   }
 }

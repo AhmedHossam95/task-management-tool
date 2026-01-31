@@ -73,11 +73,6 @@
   }
 }
 
-// Sort trigger button height
-.sort-trigger {
-  height: 40px;
-}
-
 // Selected menu item styling
 ::ng-deep .mat-mdc-menu-item.selected {
   background: var(--mat-sys-primary-container, #e3f2fd);

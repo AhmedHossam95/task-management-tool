@@ -16,7 +16,13 @@
     (cdkDropListDropped)="onDrop($event)"
   >
     @for (task of tasks(); track task.id) {
-      <app-task cdkDrag [cdkDragData]="task" [cdkDragDisabled]="!dragEnabled()" [task]="task" />
+      <app-task
+        cdkDrag
+        [cdkDragData]="task"
+        [cdkDragDisabled]="!dragEnabled()"
+        [task]="task"
+        (taskClick)="onTaskClick($event)"
+      />
     } @empty {
       <p class="fw-semibold fs-lg fc-gray text-center italic p-4">No tasks</p>
     }

@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  output,
+  signal,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
@@ -37,6 +44,9 @@ import {
 export class FilterToolbarComponent {
   protected readonly filterService = inject(TasksFilterService);
   private readonly usersService = inject(UsersService);
+
+  /** Emits when create task button is clicked */
+  readonly createTask = output<void>();
 
   /** Users list for assignee filter dropdown */
   protected readonly users = computed(() => this.usersService.users() ?? []);
@@ -113,5 +123,12 @@ export class FilterToolbarComponent {
    */
   isStatusActive(status: StatusFilter): boolean {
     return this.filterService.statusFilter() === status;
+  }
+
+  /**
+   * Handle create task button click
+   */
+  onCreateTask(): void {
+    this.createTask.emit();
   }
 }

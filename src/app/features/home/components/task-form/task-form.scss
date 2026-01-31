@@ -1,0 +1,22 @@
+.task-form {
+  min-width: 400px;
+  max-width: 500px;
+
+  @media (max-width: 576px) {
+    min-width: auto;
+    width: 100%;
+  }
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+mat-chip-row {
+  font-size: 0.875rem;
+}
+
+.task-form-footer {
+  position: sticky;
+  bottom: 0;
+}

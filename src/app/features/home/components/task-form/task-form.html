@@ -1,0 +1,115 @@
+<form class="task-form d-flex flex-column gap-3" [formGroup]="form" (ngSubmit)="onSubmit()">
+  <h2 class="fw-bold fs-lg fc-black m-0">{{ formTitle() }}</h2>
+
+  <!-- Title -->
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Title</mat-label>
+    <input formControlName="title" matInput placeholder="Enter task title" />
+    @if (form.get('title')?.hasError('required') && form.get('title')?.touched) {
+      <mat-error>Title is required</mat-error>
+    }
+    @if (form.get('title')?.hasError('maxlength')) {
+      <mat-error>Title must be less than 100 characters</mat-error>
+    }
+  </mat-form-field>
+
+  <!-- Description -->
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Description</mat-label>
+    <textarea
+      formControlName="description"
+      matInput
+      placeholder="Enter task description"
+      rows="3"
+    ></textarea>
+    @if (form.get('description')?.hasError('maxlength')) {
+      <mat-error>Description must be less than 500 characters</mat-error>
+    }
+  </mat-form-field>
+
+  <!-- Priority and Due Date Row -->
+  <div class="row">
+    <div class="col-12 col-md-6">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Priority</mat-label>
+        <mat-select formControlName="priority">
+          @for (option of priorityOptions; track option.value) {
+            <mat-option [value]="option.value">{{ option.label }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-12 col-md-6">
+      <mat-form-field appearance="outline" class="w-100">
+        <mat-label>Due Date</mat-label>
+        <input formControlName="dueDate" matInput [matDatepicker]="picker" [min]="minDate" />
+        <mat-datepicker-toggle matIconSuffix [for]="picker" />
+        <mat-datepicker #picker />
+        @if (form.get('dueDate')?.hasError('required') && form.get('dueDate')?.touched) {
+          <mat-error>Due date is required</mat-error>
+        }
+        @if (form.get('dueDate')?.hasError('pastDate') && form.get('dueDate')?.touched) {
+          <mat-error>Due date cannot be in the past</mat-error>
+        }
+      </mat-form-field>
+    </div>
+  </div>
+
+  <!-- Assignee -->
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Assignee</mat-label>
+    <mat-select formControlName="assignee">
+      @if (form.get('assignee')?.value && users().length) {
+        <mat-select-trigger>
+          {{ form.get('assignee')?.value | userNameFromId: users() }}
+        </mat-select-trigger>
+      }
+
+      @for (user of users(); track user.id) {
+        <mat-option [value]="user.id">
+          <div class="d-flex align-items-center gap-2">
+            <app-assignee-avatar [assigneeName]="user.name" />
+            <div class="d-flex flex-column">
+              <span class="fs-sm">{{ user.name }}</span>
+              <span class="fs-xs fc-gray">{{ user.email }}</span>
+            </div>
+          </div>
+        </mat-option>
+      }
+    </mat-select>
+    @if (form.get('assignee')?.hasError('required') && form.get('assignee')?.touched) {
+      <mat-error>Assignee is required</mat-error>
+    }
+  </mat-form-field>
+
+  <!-- Tags -->
+  <mat-form-field appearance="outline" class="w-100">
+    <mat-label>Tags</mat-label>
+    <mat-chip-grid #chipGrid>
+      @for (tag of tagsArray.controls; track $index) {
+        <mat-chip-row (removed)="removeTag($index)">
+          {{ tag.value }}
+          <button matChipRemove type="button">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip-row>
+      }
+    </mat-chip-grid>
+    <input
+      placeholder="Add a tag..."
+      [matChipInputAddOnBlur]="true"
+      [matChipInputFor]="chipGrid"
+      [matChipInputSeparatorKeyCodes]="separatorKeyCodes"
+      (matChipInputTokenEnd)="addTag($event)"
+    />
+  </mat-form-field>
+
+  <!-- Actions -->
+  <div class="task-form-footer bg-white">
+    <app-task-form-footer
+      [isEditMode]="isEditMode()"
+      (cancelClick)="onCancel()"
+      (deleteClick)="onDelete()"
+    />
+  </div>
+</form>

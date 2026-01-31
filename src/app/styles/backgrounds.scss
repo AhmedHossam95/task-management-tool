@@ -15,15 +15,15 @@
 }
 
 .bg-warning {
-  background-color: var(--mat-sys-tertiary);
+  background-color: var(--mat-sys-tertiary) !important;
 }
 
 .bg-success-light {
-  background-color: var(--success-light);
+  background-color: var(--success-light) !important;
 }
 
 .bg-success {
-  background-color: var(--success);
+  background-color: var(--success) !important;
 }
 
 .bg-primary {
@@ -39,7 +39,7 @@
 }
 
 .bg-gray {
-  background-color: var(--gray);
+  background-color: var(--gray) !important;
 }
 
 .bg-light-gray {

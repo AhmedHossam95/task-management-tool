@@ -1,0 +1,9 @@
+<div mat-dialog-content>
+  <app-task-form
+    [task]="data.task"
+    [users]="data.users"
+    (closeModal)="onCloseModal()"
+    (delete)="onDelete($event)"
+    (save)="onSave($event)"
+  />
+</div>

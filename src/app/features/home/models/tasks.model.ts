@@ -38,3 +38,13 @@ export type CreateTaskDto = Omit<Task, 'id' | 'createdAt' | 'updatedAt' | 'order
 
 /** DTO for updating a task (all fields optional except id) */
 export type UpdateTaskDto = Partial<Omit<Task, 'id'>> & { id: string };
+
+/** Form value type for task creation/editing */
+export type TaskFormValue = {
+  title: string;
+  description: string;
+  priority: TaskPriority;
+  dueDate: string | Date;
+  assignee: string; // Assignee ID
+  tags: string[];
+};

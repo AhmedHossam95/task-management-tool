@@ -1,10 +1,17 @@
 import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { MatDialog } from '@angular/material/dialog';
 import { TasksService } from './services/tasks.service';
 import { TasksFilterService } from './services/tasks-filter.service';
+import { UsersService } from './services/users.service';
 import { KanbanColumnComponent } from './components/kanban-column/kanban-column';
 import { FilterToolbarComponent } from './components/filter-toolbar/filter-toolbar';
 import { Task, TaskStatus } from './models/tasks.model';
+import {
+  TaskDialogComponent,
+  TaskDialogData,
+  TaskDialogResult,
+} from './components/task-dialog/task-dialog';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -16,6 +23,8 @@ import { Task, TaskStatus } from './models/tasks.model';
 export class HomeComponent {
   private readonly tasksService = inject(TasksService);
   private readonly filterService = inject(TasksFilterService);
+  private readonly usersService = inject(UsersService);
+  private readonly dialog = inject(MatDialog);
 
   /** Use filtered tasks for display */
   protected readonly todoTasks = this.tasksService.filteredTodoTasks;
@@ -61,5 +70,49 @@ export class HomeComponent {
         this.tasksService.moveTaskToColumn(task, newStatus, event.currentIndex);
       }
     }
+  }
+
+  /** Open dialog to create a new task */
+  onCreateTask(): void {
+    this.openTaskDialog(null);
+  }
+
+  /** Open dialog to edit an existing task */
+  onTaskClick(task: Task): void {
+    this.openTaskDialog(task);
+  }
+
+  /** Open the task dialog for create or edit */
+  private openTaskDialog(task: Task | null): void {
+    const dialogData: TaskDialogData = {
+      task,
+      users: this.usersService.users() ?? [],
+    };
+
+    const dialogRef = this.dialog.open<TaskDialogComponent, TaskDialogData, TaskDialogResult>(
+      TaskDialogComponent,
+      {
+        data: dialogData,
+        width: '100%',
+        maxWidth: '550px',
+        disableClose: false,
+      },
+    );
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (!result) return;
+
+      if (result.action === 'save' && result.data) {
+        if (result.taskId) {
+          // Edit mode - update existing task
+          this.tasksService.updateTask(result.taskId, result.data);
+        } else {
+          // Create mode - create new task
+          this.tasksService.createTask(result.data);
+        }
+      } else if (result.action === 'delete' && result.taskId) {
+        this.tasksService.deleteTask(result.taskId);
+      }
+    });
   }
 }

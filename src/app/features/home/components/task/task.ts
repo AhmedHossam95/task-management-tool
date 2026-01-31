@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { Task } from '../../models/tasks.model';
 import { UpperCasePipe } from '@angular/common';
 import { MatDividerModule } from '@angular/material/divider';
@@ -14,4 +14,15 @@ import { AssigneeAvatarComponent } from '../assignee-avatar/assignee-avatar.comp
 })
 export class TaskComponent {
   readonly task = input<Task>();
+
+  /** Emits when task card is clicked */
+  readonly taskClick = output<Task>();
+
+  /** Handle click on task card */
+  onTaskClick(): void {
+    const task = this.task();
+    if (task) {
+      this.taskClick.emit(task);
+    }
+  }
 }

@@ -1,5 +1,23 @@
 .task-card {
   max-width: 400px;
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.2s ease;
+
+  &.clickable {
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+      transform: translateY(-2px);
+    }
+
+    &:focus {
+      outline: 2px solid var(--mat-sys-primary);
+      outline-offset: 2px;
+    }
+  }
 
   &.overdue {
     border-inline-start: 4px solid var(--mat-sys-error);
@@ -9,8 +27,8 @@
     width: fit-content;
 
     &.low {
-      background-color: var(--mat-sys-success-container);
-      color: var(--mat-sys-success);
+      background-color: var(--success-light);
+      color: var(--success);
     }
 
     &.medium {

@@ -1,0 +1,7 @@
+.delete-btn {
+  color: var(--mat-sys-error);
+
+  &:hover {
+    background-color: var(--mat-sys-error-container);
+  }
+}

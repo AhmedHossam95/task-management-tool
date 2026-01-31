@@ -1,4 +1,4 @@
-<app-filter-toolbar />
+<app-filter-toolbar (createTask)="onCreateTask()" />
 
 <section class="kanban-board d-flex gap-3">
   @if (visibleColumns().includes('todo')) {
@@ -8,6 +8,7 @@
       [connectedTo]="columnIds()"
       [count]="todoCount()"
       [tasks]="todoTasks()"
+      (taskClick)="onTaskClick($event)"
       (taskDropped)="onTaskDrop($event)"
     />
   }
@@ -19,6 +20,7 @@
       [connectedTo]="columnIds()"
       [count]="inProgressCount()"
       [tasks]="inProgressTasks()"
+      (taskClick)="onTaskClick($event)"
       (taskDropped)="onTaskDrop($event)"
     />
   }
@@ -30,6 +32,7 @@
       [connectedTo]="columnIds()"
       [count]="doneCount()"
       [tasks]="doneTasks()"
+      (taskClick)="onTaskClick($event)"
       (taskDropped)="onTaskDrop($event)"
     />
   }
