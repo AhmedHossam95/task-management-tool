@@ -1,8 +1,3 @@
-.kanban-board {
-  min-height: calc(100vh - 120px);
-  overflow-x: auto;
-}
-
 // Global CDK drag-drop styles
 :host ::ng-deep {
   .cdk-drag-preview {
@@ -25,4 +20,20 @@
   .cdk-drop-list-dragging .cdk-drag:not(.cdk-drag-placeholder) {
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
   }
+}
+
+.kanban-board-container {
+  height: calc(100vh - 130px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.kanban-board {
+  flex: 1;
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 1rem 0;
 }

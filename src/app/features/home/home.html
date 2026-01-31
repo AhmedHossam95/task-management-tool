@@ -1,39 +1,41 @@
-<app-filter-toolbar (createTask)="onCreateTask()" />
+<div class="kanban-board-container">
+  <app-filter-toolbar (createTask)="onCreateTask()" />
 
-<section class="kanban-board d-flex gap-3">
-  @if (visibleColumns().includes('todo')) {
-    <app-kanban-column
-      columnId="todo"
-      title="Todo"
-      [connectedTo]="columnIds()"
-      [count]="todoCount()"
-      [tasks]="todoTasks()"
-      (taskClick)="onTaskClick($event)"
-      (taskDropped)="onTaskDrop($event)"
-    />
-  }
+  <section class="kanban-board d-flex gap-3">
+    @if (visibleColumns().includes('todo')) {
+      <app-kanban-column
+        columnId="todo"
+        title="Todo"
+        [connectedTo]="columnIds()"
+        [count]="todoCount()"
+        [tasks]="todoTasks()"
+        (taskClick)="onTaskClick($event)"
+        (taskDropped)="onTaskDrop($event)"
+      />
+    }
 
-  @if (visibleColumns().includes('in_progress')) {
-    <app-kanban-column
-      columnId="in_progress"
-      title="In Progress"
-      [connectedTo]="columnIds()"
-      [count]="inProgressCount()"
-      [tasks]="inProgressTasks()"
-      (taskClick)="onTaskClick($event)"
-      (taskDropped)="onTaskDrop($event)"
-    />
-  }
+    @if (visibleColumns().includes('in_progress')) {
+      <app-kanban-column
+        columnId="in_progress"
+        title="In Progress"
+        [connectedTo]="columnIds()"
+        [count]="inProgressCount()"
+        [tasks]="inProgressTasks()"
+        (taskClick)="onTaskClick($event)"
+        (taskDropped)="onTaskDrop($event)"
+      />
+    }
 
-  @if (visibleColumns().includes('done')) {
-    <app-kanban-column
-      columnId="done"
-      title="Done"
-      [connectedTo]="columnIds()"
-      [count]="doneCount()"
-      [tasks]="doneTasks()"
-      (taskClick)="onTaskClick($event)"
-      (taskDropped)="onTaskDrop($event)"
-    />
-  }
-</section>
+    @if (visibleColumns().includes('done')) {
+      <app-kanban-column
+        columnId="done"
+        title="Done"
+        [connectedTo]="columnIds()"
+        [count]="doneCount()"
+        [tasks]="doneTasks()"
+        (taskClick)="onTaskClick($event)"
+        (taskDropped)="onTaskDrop($event)"
+      />
+    }
+  </section>
+</div>

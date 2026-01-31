@@ -36,12 +36,6 @@
   }
 }
 
-.small-screen .sidenav-container {
-  /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
-     `<body>` to be our scrolling element for mobile and tablet layouts. */
-  flex: 1 0 auto;
-}
-
 .sidenav-content {
   padding: 32px;
   // substract navbar height
