@@ -92,6 +92,17 @@ export class TasksService {
     () => this.tasks().filter((t) => t.status === TASK_STATUS.DONE).length,
   );
 
+  /** Priority count signals (unfiltered) for analytics */
+  readonly highPriorityCount = computed(
+    () => this.tasks().filter((t) => t.priority === 'high').length,
+  );
+  readonly mediumPriorityCount = computed(
+    () => this.tasks().filter((t) => t.priority === 'medium').length,
+  );
+  readonly lowPriorityCount = computed(
+    () => this.tasks().filter((t) => t.priority === 'low').length,
+  );
+
   /**
    * Gets filtered tasks for a specific status (used for reordering)
    */

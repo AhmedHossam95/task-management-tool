@@ -1,0 +1,17 @@
+<mat-card appearance="outlined" class="bg-white br-md light-shadow border-none">
+  <mat-card-header>
+    <mat-card-title class="fw-regular fs-sm fc-gray mb-2">
+      {{ stat()?.icon }}
+      {{ stat()?.title }}
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <h3 class="fw-bold fs-3xl fc-black my-3">{{ stat()?.value }}</h3>
+    <p class="fw-regular fs-xs fc-gray  {{ stat()?.changeType }}">
+      @if (stat()?.change !== '0') {
+        {{ stat()?.change }}
+      }
+      {{ stat()?.changeLabel }}
+    </p>
+  </mat-card-content>
+</mat-card>

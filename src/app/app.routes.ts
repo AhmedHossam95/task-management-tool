@@ -10,8 +10,9 @@ export const routes: Routes = [
     loadComponent: () => import('./features/feed/feed').then((m) => m.FeedComponent),
   },
   {
-    path: 'analytics',
-    loadComponent: () => import('./features/analytics/analytics').then((m) => m.AnalyticsComponent),
+    path: 'statistics',
+    loadComponent: () =>
+      import('./features/statistics/statistics.component').then((m) => m.StatisticsComponent),
   },
   {
     path: '',

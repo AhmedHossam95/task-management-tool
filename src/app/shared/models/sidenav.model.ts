@@ -1,4 +1,4 @@
-type RouteName = 'home' | 'feed' | 'analytics';
+type RouteName = 'home' | 'feed' | 'statistics';
 
 export type Route = {
   name: RouteName;

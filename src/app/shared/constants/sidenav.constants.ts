@@ -10,7 +10,7 @@ export const SIDENAV_ROUTES: Route[] = [
     icon: 'track_changes',
   },
   {
-    name: 'analytics',
+    name: 'statistics',
     icon: 'bar_chart',
   },
 ] as const;

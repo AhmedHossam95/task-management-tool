@@ -65,6 +65,10 @@ $border-radius: (
   border: 1px solid var(--mat-sys-surface-variant);
 }
 
+.border-none {
+  border: none !important;
+}
+
 @mixin generate-border-radius-vars($radius) {
   @each $name, $size in $radius {
     --br-#{$name}: #{$size};
