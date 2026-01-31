@@ -39,22 +39,27 @@ export class HomeComponent {
   /** Column IDs for drag-drop connectivity (only visible columns) */
   protected readonly columnIds = this.visibleColumns;
 
-  /** Whether drag-drop is enabled (only when sorting by manual order) */
-  protected readonly isDragEnabled = this.filterService.isDragEnabled;
-
   onTaskDrop(event: CdkDragDrop<Task[]>): void {
     const task = event.item.data as Task;
+    const hasFiltersOrSort = this.filterService.hasActiveFiltersOrSort();
 
     if (event.previousContainer === event.container) {
-      // Same column reorder
+      // Same column - only allow reorder when no filters/sort active
+      if (hasFiltersOrSort) return;
       if (event.previousIndex === event.currentIndex) return;
 
       const status = event.container.id as TaskStatus;
       this.tasksService.reorderTasksOptimistic(status, event.previousIndex, event.currentIndex);
     } else {
-      // Cross-column move to exact drop position
+      // Cross-column move
       const newStatus = event.container.id as TaskStatus;
-      this.tasksService.moveTaskToColumn(task, newStatus, event.currentIndex);
+      if (hasFiltersOrSort) {
+        // Append to end when filters/sort active
+        this.tasksService.moveTaskToColumnEnd(task, newStatus);
+      } else {
+        // Use exact drop position when no filters/sort
+        this.tasksService.moveTaskToColumn(task, newStatus, event.currentIndex);
+      }
     }
   }
 }

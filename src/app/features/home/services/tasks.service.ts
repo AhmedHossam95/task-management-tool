@@ -165,6 +165,16 @@ export class TasksService {
   }
 
   /**
+   * Move a task to a different column at the last position
+   * Uses the entire column (not filtered) to determine last position
+   */
+  moveTaskToColumnEnd(task: Task, newStatus: TaskStatus): void {
+    const targetTasks = this.getTargetColumnTasks(task.id, newStatus);
+    const lastPosition = targetTasks.length;
+    this.moveTaskToColumn(task, newStatus, lastPosition);
+  }
+
+  /**
    * Gets tasks in target column excluding the moved task
    */
   private getTargetColumnTasks(excludeTaskId: string, status: TaskStatus): Task[] {

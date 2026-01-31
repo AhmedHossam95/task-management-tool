@@ -7,7 +7,6 @@
       title="Todo"
       [connectedTo]="columnIds()"
       [count]="todoCount()"
-      [dragEnabled]="isDragEnabled()"
       [tasks]="todoTasks()"
       (taskDropped)="onTaskDrop($event)"
     />
@@ -19,7 +18,6 @@
       title="In Progress"
       [connectedTo]="columnIds()"
       [count]="inProgressCount()"
-      [dragEnabled]="isDragEnabled()"
       [tasks]="inProgressTasks()"
       (taskDropped)="onTaskDrop($event)"
     />
@@ -31,7 +29,6 @@
       title="Done"
       [connectedTo]="columnIds()"
       [count]="doneCount()"
-      [dragEnabled]="isDragEnabled()"
       [tasks]="doneTasks()"
       (taskDropped)="onTaskDrop($event)"
     />

@@ -35,8 +35,15 @@ export class TasksFilterService {
   /** Sort configuration signal */
   readonly sortConfig = signal<TaskSortConfig>(DEFAULT_FILTERS.sort);
 
-  /** Whether drag-drop is enabled (only when sorting by manual order) */
-  readonly isDragEnabled = computed(() => this.sortConfig().field === 'order');
+  /** Whether any non-default filters or sorting is active */
+  readonly hasActiveFiltersOrSort = computed(() => {
+    return (
+      this.priorityFilter() !== DEFAULT_FILTERS.priority ||
+      this.assigneeFilter() !== DEFAULT_FILTERS.assignee ||
+      this.searchQuery().trim() !== '' ||
+      this.sortConfig().field !== DEFAULT_FILTERS.sort.field
+    );
+  });
 
   constructor() {
     this.initFromUrl();
