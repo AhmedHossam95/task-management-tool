@@ -1,5 +1,28 @@
-<article class="d-flex flex-column gap-3 bg-white p-3 br-md">
-  @for (task of tasks(); track task.id) {
-    <app-task [task]="task" />
-  }
-</article>
+<section class="kanban-board d-flex gap-3">
+  <app-kanban-column
+    columnId="todo"
+    title="Todo"
+    [connectedTo]="columnIds"
+    [count]="todoCount()"
+    [tasks]="todoTasks()"
+    (taskDropped)="onTaskDrop($event)"
+  />
+
+  <app-kanban-column
+    columnId="in_progress"
+    title="In Progress"
+    [connectedTo]="columnIds"
+    [count]="inProgressCount()"
+    [tasks]="inProgressTasks()"
+    (taskDropped)="onTaskDrop($event)"
+  />
+
+  <app-kanban-column
+    columnId="done"
+    title="Done"
+    [connectedTo]="columnIds"
+    [count]="doneCount()"
+    [tasks]="doneTasks()"
+    (taskDropped)="onTaskDrop($event)"
+  />
+</section>
