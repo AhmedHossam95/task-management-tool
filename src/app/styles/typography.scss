@@ -61,6 +61,14 @@ $font-weights: (
   color: var(--light-gray);
 }
 
+.italic {
+  font-style: italic;
+}
+
+.text-center {
+  text-align: center;
+}
+
 @mixin generate-font-size-classes($sizes) {
   @each $name, $size in $sizes {
     .fs-#{$name} {

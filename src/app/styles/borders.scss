@@ -56,6 +56,10 @@ $border-radius: (
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.08) !important;
 }
 
+.border-light-bottom {
+  border-bottom: 1px solid var(--mat-sys-surface-variant);
+}
+
 .border-light {
   border: 1px solid var(--mat-sys-surface-variant);
 }
