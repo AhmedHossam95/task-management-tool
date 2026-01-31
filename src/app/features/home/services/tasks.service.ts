@@ -45,6 +45,18 @@ export class TasksService {
   /** Get overdue tasks */
   readonly overdueTasks = computed(() => this.tasks().filter((task) => task.isOverdue));
 
+  /** Tasks filtered by status - cached and shared */
+  readonly todoTasks = computed(() => this.tasks().filter((task) => task.status === 'todo'));
+  readonly inProgressTasks = computed(() =>
+    this.tasks().filter((task) => task.status === 'in_progress'),
+  );
+  readonly doneTasks = computed(() => this.tasks().filter((task) => task.status === 'done'));
+
+  /** Task counts by status */
+  readonly todoCount = computed(() => this.todoTasks().length);
+  readonly inProgressCount = computed(() => this.inProgressTasks().length);
+  readonly doneCount = computed(() => this.doneTasks().length);
+
   /** Reload tasks data */
   reload(): void {
     this.tasksResource.reload();
