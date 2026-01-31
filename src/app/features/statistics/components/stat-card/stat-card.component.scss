@@ -1,0 +1,11 @@
+p {
+  &.positive {
+    color: var(--success);
+  }
+  &.negative {
+    color: var(--mat-sys-error);
+  }
+  &.neutral {
+    color: var(--mat-sys-gray);
+  }
+}

@@ -13,9 +13,7 @@
         "avatar": "JD",
         "email": "john.doe@company.com"
       },
-      "tags": [
-        "Design"
-      ],
+      "tags": ["Design"],
       "createdAt": "2026-01-28T16:40:21.287Z",
       "updatedAt": "2026-01-31T12:42:34.359Z",
       "order": 1,
@@ -35,9 +33,7 @@
         "avatar": "SS",
         "email": "sarah.smith@company.com"
       },
-      "tags": [
-        "Documentation"
-      ],
+      "tags": ["Documentation"],
       "createdAt": "2026-01-27T16:40:21.287Z",
       "updatedAt": "2026-01-31T13:37:18.482Z",
       "order": 4,
@@ -57,9 +53,7 @@
         "avatar": "MJ",
         "email": "mike.johnson@company.com"
       },
-      "tags": [
-        "Admin"
-      ],
+      "tags": ["Admin"],
       "createdAt": "2026-01-26T16:40:21.287Z",
       "updatedAt": "2026-01-31T14:01:35.426Z",
       "order": 1,
@@ -79,9 +73,7 @@
         "avatar": "ED",
         "email": "emily.davis@company.com"
       },
-      "tags": [
-        "Frontend"
-      ],
+      "tags": ["Frontend"],
       "createdAt": "2026-01-25T16:40:21.287Z",
       "updatedAt": "2026-01-31T14:01:35.427Z",
       "order": 2,
@@ -102,9 +94,7 @@
         "avatar": "ED",
         "email": "emily.davis@company.com"
       },
-      "tags": [
-        "Research"
-      ],
+      "tags": ["Research"],
       "createdAt": "2026-01-15T16:40:21.287Z",
       "updatedAt": "2026-01-31T14:03:10.918Z",
       "order": 2
@@ -123,9 +113,7 @@
         "avatar": "SS",
         "email": "sarah.smith@company.com"
       },
-      "tags": [
-        "Finance"
-      ],
+      "tags": ["Finance"],
       "createdAt": "2026-01-14T16:40:21.287Z",
       "updatedAt": "2026-01-31T12:42:51.870Z",
       "order": 3
@@ -143,9 +131,7 @@
         "avatar": "SS",
         "email": "sarah.smith@company.com"
       },
-      "tags": [
-        "Performance"
-      ],
+      "tags": ["Performance"],
       "createdAt": "2026-01-24T16:40:21.287Z",
       "updatedAt": "2026-01-31T13:37:18.482Z",
       "order": 7,
@@ -165,9 +151,7 @@
         "avatar": "JD",
         "email": "john.doe@company.com"
       },
-      "tags": [
-        "Backend"
-      ],
+      "tags": ["Backend"],
       "createdAt": "2026-01-23T16:40:21.287Z",
       "updatedAt": "2026-01-31T14:03:10.918Z",
       "order": 3
@@ -185,9 +169,7 @@
         "avatar": "MJ",
         "email": "mike.johnson@company.com"
       },
-      "tags": [
-        "Backend"
-      ],
+      "tags": ["Backend"],
       "createdAt": "2026-01-22T16:40:21.287Z",
       "updatedAt": "2026-01-31T13:37:18.482Z",
       "order": 5,
@@ -207,9 +189,7 @@
         "avatar": "ED",
         "email": "emily.davis@company.com"
       },
-      "tags": [
-        "Frontend"
-      ],
+      "tags": ["Frontend"],
       "createdAt": "2026-01-21T16:40:21.287Z",
       "updatedAt": "2026-01-31T13:37:18.482Z",
       "order": 3,
@@ -230,10 +210,7 @@
         "avatar": "JD",
         "email": "john.doe@company.com"
       },
-      "tags": [
-        "Backend",
-        "Critical"
-      ],
+      "tags": ["Backend", "Critical"],
       "createdAt": "2026-01-16T16:40:21.287Z",
       "updatedAt": "2026-01-31T14:03:10.917Z",
       "order": 0
@@ -252,9 +229,7 @@
         "avatar": "MJ",
         "email": "mike.johnson@company.com"
       },
-      "tags": [
-        "Bug Fix"
-      ],
+      "tags": ["Bug Fix"],
       "createdAt": "2026-01-28T16:40:21.287Z",
       "updatedAt": "2026-01-31T14:03:10.918Z",
       "order": 1
@@ -273,9 +248,7 @@
         "avatar": "JD",
         "email": "john.doe@company.com"
       },
-      "tags": [
-        "DevOps"
-      ],
+      "tags": ["DevOps"],
       "createdAt": "2026-01-21T16:40:21.287Z",
       "updatedAt": "2026-01-31T13:37:18.482Z",
       "order": 6
@@ -294,9 +267,7 @@
         "avatar": "SS",
         "email": "sarah.smith@company.com"
       },
-      "tags": [
-        "Testing"
-      ],
+      "tags": ["Testing"],
       "createdAt": "2026-01-20T16:40:21.287Z",
       "updatedAt": "2026-01-31T13:37:18.482Z",
       "order": 9
@@ -315,9 +286,7 @@
         "avatar": "ED",
         "email": "emily.davis@company.com"
       },
-      "tags": [
-        "Refactoring"
-      ],
+      "tags": ["Refactoring"],
       "createdAt": "2026-01-18T16:40:21.287Z",
       "updatedAt": "2026-01-31T13:37:18.482Z",
       "order": 8
@@ -336,9 +305,7 @@
         "avatar": "JD",
         "email": "john.doe@company.com"
       },
-      "tags": [
-        "Security"
-      ],
+      "tags": ["Security"],
       "createdAt": "2026-01-17T16:40:21.287Z",
       "updatedAt": "2026-01-31T13:37:18.482Z",
       "order": 10
@@ -357,9 +324,7 @@
         "avatar": "MJ",
         "email": "mike.johnson@company.com"
       },
-      "tags": [
-        "Maintenance"
-      ],
+      "tags": ["Maintenance"],
       "createdAt": "2026-01-16T16:40:21.287Z",
       "updatedAt": "2026-01-31T13:37:18.482Z",
       "order": 11
