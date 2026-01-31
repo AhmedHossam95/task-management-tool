@@ -1,4 +1,4 @@
-import { computed, effect, Injectable, linkedSignal, Signal } from '@angular/core';
+import { computed, Injectable, Signal } from '@angular/core';
 import { httpResource } from '@angular/common/http';
 
 import { API_URL } from '../../../shared/constants/api.constants';
@@ -41,12 +41,6 @@ export class StatisticsService {
    * Signal containing any error that occurred during fetch.
    */
   readonly error: Signal<Error | undefined> = computed(() => this.statisticsResource.error());
-
-  constructor() {
-    effect(() => {
-      console.log(this.statisticsResource.value(), 'statistics');
-    });
-  }
 
   /**
    * Creates a computed signal that finds a statistic by its ID.

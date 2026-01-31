@@ -1,7 +1,34 @@
-<div class="row">
+<!-- Stat Cards Section -->
+<div class="row g-4 mb-4">
   @for (stat of statistics(); track stat.id) {
-    <div class="col-12 col-md-6 col-lg-3">
+    <div class="col-12 col-md-6 col-xl-3">
       <app-stat-card [stat]="stat" />
     </div>
   }
+</div>
+
+<!-- Charts Section -->
+<div class="row g-4">
+  <div class="col-12 col-lg-6">
+    <app-base-chart
+      [chartType]="'pie'"
+      [colors]="statusColors"
+      [data]="statusData()"
+      [isEmpty]="isEmpty()"
+      [isLoading]="isLoading()"
+      [labels]="statusLabels"
+      [title]="'Tasks by Status'"
+    />
+  </div>
+  <div class="col-12 col-lg-6">
+    <app-base-chart
+      [chartType]="'doughnut'"
+      [colors]="priorityColors"
+      [data]="priorityData()"
+      [isEmpty]="isEmpty()"
+      [isLoading]="isLoading()"
+      [labels]="priorityLabels"
+      [title]="'Tasks by Priority'"
+    />
+  </div>
 </div>

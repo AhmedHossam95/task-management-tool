@@ -6,16 +6,19 @@
       "description": "Create wireframes and mockups for the new homepage redesign with modern UI elements",
       "status": "done",
       "priority": "high",
-      "dueDate": "2026-02-01",
+      "dueDate": "2026-02-21",
       "assignee": {
         "id": "user-001",
         "name": "John Doe",
         "avatar": "JD",
         "email": "john.doe@company.com"
       },
-      "tags": ["Design"],
+      "tags": [
+        "Design",
+        "test"
+      ],
       "createdAt": "2026-01-28T16:40:21.287Z",
-      "updatedAt": "2026-01-31T12:42:34.359Z",
+      "updatedAt": "2026-01-31T20:10:41.521Z",
       "order": 1,
       "completedAt": "2026-01-31T12:42:34.359Z",
       "isOverdue": false
@@ -33,10 +36,12 @@
         "avatar": "SS",
         "email": "sarah.smith@company.com"
       },
-      "tags": ["Documentation"],
+      "tags": [
+        "Documentation"
+      ],
       "createdAt": "2026-01-27T16:40:21.287Z",
-      "updatedAt": "2026-01-31T13:37:18.482Z",
-      "order": 4,
+      "updatedAt": "2026-01-31T16:21:38.601Z",
+      "order": 5,
       "completedAt": "2026-01-31T12:43:00.969Z",
       "isOverdue": false
     },
@@ -44,7 +49,7 @@
       "id": "task-003",
       "title": "Organize team meeting",
       "description": "Schedule and prepare agenda for quarterly planning session",
-      "status": "done",
+      "status": "in_progress",
       "priority": "low",
       "dueDate": "2026-02-06",
       "assignee": {
@@ -53,10 +58,12 @@
         "avatar": "MJ",
         "email": "mike.johnson@company.com"
       },
-      "tags": ["Admin"],
+      "tags": [
+        "Admin"
+      ],
       "createdAt": "2026-01-26T16:40:21.287Z",
-      "updatedAt": "2026-01-31T14:01:35.426Z",
-      "order": 1,
+      "updatedAt": "2026-01-31T22:00:53.224Z",
+      "order": 0,
       "completedAt": "2026-01-31T12:56:50.629Z",
       "isOverdue": false
     },
@@ -64,7 +71,7 @@
       "id": "task-004",
       "title": "Fix responsive design issues",
       "description": "Address layout problems on mobile and tablet devices",
-      "status": "done",
+      "status": "in_progress",
       "priority": "high",
       "dueDate": "2026-02-02",
       "assignee": {
@@ -73,10 +80,12 @@
         "avatar": "ED",
         "email": "emily.davis@company.com"
       },
-      "tags": ["Frontend"],
+      "tags": [
+        "Frontend"
+      ],
       "createdAt": "2026-01-25T16:40:21.287Z",
-      "updatedAt": "2026-01-31T14:01:35.427Z",
-      "order": 2,
+      "updatedAt": "2026-01-31T22:00:53.224Z",
+      "order": 1,
       "completedAt": "2026-01-31T13:37:18.482Z",
       "isOverdue": false
     },
@@ -84,39 +93,45 @@
       "id": "task-016",
       "title": "Review client feedback",
       "description": "Analyze customer feedback from user testing sessions",
-      "status": "in_progress",
+      "status": "done",
       "priority": "medium",
       "dueDate": "2026-01-27",
-      "isOverdue": true,
+      "isOverdue": false,
       "assignee": {
         "id": "user-004",
         "name": "Emily Davis",
         "avatar": "ED",
         "email": "emily.davis@company.com"
       },
-      "tags": ["Research"],
+      "tags": [
+        "Research"
+      ],
       "createdAt": "2026-01-15T16:40:21.287Z",
-      "updatedAt": "2026-01-31T14:03:10.918Z",
-      "order": 2
+      "updatedAt": "2026-01-31T17:09:30.781Z",
+      "order": 11,
+      "completedAt": "2026-01-31T17:09:30.781Z"
     },
     {
       "id": "task-015",
       "title": "Prepare Q4 budget report",
       "description": "Compile and analyze financial data for quarterly budget presentation",
-      "status": "todo",
+      "status": "done",
       "priority": "high",
       "dueDate": "2026-01-28",
-      "isOverdue": true,
+      "isOverdue": false,
       "assignee": {
         "id": "user-002",
         "name": "Sarah Smith",
         "avatar": "SS",
         "email": "sarah.smith@company.com"
       },
-      "tags": ["Finance"],
+      "tags": [
+        "Finance"
+      ],
       "createdAt": "2026-01-14T16:40:21.287Z",
-      "updatedAt": "2026-01-31T12:42:51.870Z",
-      "order": 3
+      "updatedAt": "2026-01-31T22:39:47.250Z",
+      "order": 10,
+      "completedAt": "2026-01-31T17:10:19.961Z"
     },
     {
       "id": "task-006",
@@ -131,10 +146,12 @@
         "avatar": "SS",
         "email": "sarah.smith@company.com"
       },
-      "tags": ["Performance"],
+      "tags": [
+        "Performance"
+      ],
       "createdAt": "2026-01-24T16:40:21.287Z",
-      "updatedAt": "2026-01-31T13:37:18.482Z",
-      "order": 7,
+      "updatedAt": "2026-01-31T16:21:38.602Z",
+      "order": 8,
       "completedAt": "2026-01-31T12:37:53.333Z",
       "isOverdue": false
     },
@@ -151,16 +168,18 @@
         "avatar": "JD",
         "email": "john.doe@company.com"
       },
-      "tags": ["Backend"],
+      "tags": [
+        "Backend"
+      ],
       "createdAt": "2026-01-23T16:40:21.287Z",
-      "updatedAt": "2026-01-31T14:03:10.918Z",
-      "order": 3
+      "updatedAt": "2026-01-31T22:00:53.224Z",
+      "order": 2
     },
     {
       "id": "task-007",
       "title": "Create API endpoints",
       "description": "Develop RESTful API endpoints for task management features",
-      "status": "done",
+      "status": "in_progress",
       "priority": "high",
       "dueDate": "2026-02-01",
       "assignee": {
@@ -169,10 +188,12 @@
         "avatar": "MJ",
         "email": "mike.johnson@company.com"
       },
-      "tags": ["Backend"],
+      "tags": [
+        "Backend"
+      ],
       "createdAt": "2026-01-22T16:40:21.287Z",
-      "updatedAt": "2026-01-31T13:37:18.482Z",
-      "order": 5,
+      "updatedAt": "2026-01-31T22:39:45.978Z",
+      "order": 4,
       "completedAt": "2026-01-31T12:42:46.078Z",
       "isOverdue": false
     },
@@ -189,10 +210,12 @@
         "avatar": "ED",
         "email": "emily.davis@company.com"
       },
-      "tags": ["Frontend"],
+      "tags": [
+        "Frontend"
+      ],
       "createdAt": "2026-01-21T16:40:21.287Z",
-      "updatedAt": "2026-01-31T13:37:18.482Z",
-      "order": 3,
+      "updatedAt": "2026-01-31T16:21:38.601Z",
+      "order": 4,
       "completedAt": "2026-01-31T12:41:41.752Z",
       "isOverdue": false
     },
@@ -200,39 +223,24 @@
       "id": "task-017",
       "title": "Update payment gateway integration",
       "description": "Migrate to new payment provider API and update billing logic",
-      "status": "in_progress",
+      "status": "done",
       "priority": "high",
       "dueDate": "2026-01-29",
-      "isOverdue": true,
+      "isOverdue": false,
       "assignee": {
         "id": "user-001",
         "name": "John Doe",
         "avatar": "JD",
         "email": "john.doe@company.com"
       },
-      "tags": ["Backend", "Critical"],
+      "tags": [
+        "Backend",
+        "Critical"
+      ],
       "createdAt": "2026-01-16T16:40:21.287Z",
-      "updatedAt": "2026-01-31T14:03:10.917Z",
-      "order": 0
-    },
-    {
-      "id": "task-009",
-      "title": "Fix critical login bug",
-      "description": "Resolved issue preventing users from logging in on mobile devices",
-      "status": "in_progress",
-      "priority": "high",
-      "dueDate": "2026-01-29",
-      "completedAt": "2026-01-30T16:40:21.287Z",
-      "assignee": {
-        "id": "user-003",
-        "name": "Mike Johnson",
-        "avatar": "MJ",
-        "email": "mike.johnson@company.com"
-      },
-      "tags": ["Bug Fix"],
-      "createdAt": "2026-01-28T16:40:21.287Z",
-      "updatedAt": "2026-01-31T14:03:10.918Z",
-      "order": 1
+      "updatedAt": "2026-01-31T22:39:44.562Z",
+      "order": 7,
+      "completedAt": "2026-01-31T17:10:15.900Z"
     },
     {
       "id": "task-010",
@@ -248,16 +256,18 @@
         "avatar": "JD",
         "email": "john.doe@company.com"
       },
-      "tags": ["DevOps"],
+      "tags": [
+        "DevOps"
+      ],
       "createdAt": "2026-01-21T16:40:21.287Z",
-      "updatedAt": "2026-01-31T13:37:18.482Z",
-      "order": 6
+      "updatedAt": "2026-01-31T16:21:38.602Z",
+      "order": 7
     },
     {
       "id": "task-011",
       "title": "Write unit tests",
       "description": "Add comprehensive unit tests for authentication module",
-      "status": "done",
+      "status": "in_progress",
       "priority": "high",
       "dueDate": "2026-01-27",
       "completedAt": "2026-01-28T16:40:21.287Z",
@@ -267,10 +277,12 @@
         "avatar": "SS",
         "email": "sarah.smith@company.com"
       },
-      "tags": ["Testing"],
+      "tags": [
+        "Testing"
+      ],
       "createdAt": "2026-01-20T16:40:21.287Z",
-      "updatedAt": "2026-01-31T13:37:18.482Z",
-      "order": 9
+      "updatedAt": "2026-01-31T22:39:45.978Z",
+      "order": 5
     },
     {
       "id": "task-012",
@@ -286,10 +298,12 @@
         "avatar": "ED",
         "email": "emily.davis@company.com"
       },
-      "tags": ["Refactoring"],
+      "tags": [
+        "Refactoring"
+      ],
       "createdAt": "2026-01-18T16:40:21.287Z",
-      "updatedAt": "2026-01-31T13:37:18.482Z",
-      "order": 8
+      "updatedAt": "2026-01-31T16:21:38.602Z",
+      "order": 9
     },
     {
       "id": "task-013",
@@ -298,17 +312,20 @@
       "status": "done",
       "priority": "high",
       "dueDate": "2026-01-25",
-      "completedAt": "2026-01-26T16:40:21.287Z",
+      "completedAt": "2026-01-31T22:39:47.250Z",
       "assignee": {
         "id": "user-001",
         "name": "John Doe",
         "avatar": "JD",
         "email": "john.doe@company.com"
       },
-      "tags": ["Security"],
+      "tags": [
+        "Security"
+      ],
       "createdAt": "2026-01-17T16:40:21.287Z",
-      "updatedAt": "2026-01-31T13:37:18.482Z",
-      "order": 10
+      "updatedAt": "2026-01-31T22:39:47.250Z",
+      "order": 8,
+      "isOverdue": false
     },
     {
       "id": "task-014",
@@ -324,10 +341,12 @@
         "avatar": "MJ",
         "email": "mike.johnson@company.com"
       },
-      "tags": ["Maintenance"],
+      "tags": [
+        "Maintenance"
+      ],
       "createdAt": "2026-01-16T16:40:21.287Z",
-      "updatedAt": "2026-01-31T13:37:18.482Z",
-      "order": 11
+      "updatedAt": "2026-01-31T22:39:47.250Z",
+      "order": 9
     }
   ],
   "statistics": [

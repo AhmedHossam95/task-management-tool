@@ -77,3 +77,9 @@
 ::ng-deep .mat-mdc-menu-item.selected {
   background: var(--mat-sys-primary-container, #e3f2fd);
 }
+
+@media (max-width: 768px) {
+  .status-tabs {
+    flex-wrap: wrap;
+  }
+}

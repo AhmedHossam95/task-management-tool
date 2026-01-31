@@ -1,0 +1,21 @@
+<mat-card appearance="outlined">
+  <mat-card-header>
+    <mat-card-title>{{ title() }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <div class="chart-container">
+      @if (isLoading()) {
+        <div class="loading-container">
+          <mat-spinner diameter="40" />
+        </div>
+      } @else if (isEmpty()) {
+        <div class="empty-container">
+          <p class="text-muted">No tasks to display</p>
+        </div>
+      } @else {
+        <canvas baseChart [data]="chartData()" [options]="chartOptions()" [type]="chartType()">
+        </canvas>
+      }
+    </div>
+  </mat-card-content>
+</mat-card>

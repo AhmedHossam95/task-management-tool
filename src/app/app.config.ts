@@ -8,6 +8,7 @@ import { provideHttpClient, withFetch } from '@angular/common/http';
 import { DateAdapter, MAT_DATE_FORMATS } from '@angular/material/core';
 import { routes } from './app.routes';
 import { CustomDateAdapter, DD_MM_YYYY_FORMAT } from './shared/utils/custom-date-adapter';
+import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -17,5 +18,6 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withFetch()),
     { provide: DateAdapter, useClass: CustomDateAdapter },
     { provide: MAT_DATE_FORMATS, useValue: DD_MM_YYYY_FORMAT },
+    provideCharts(withDefaultRegisterables()),
   ],
 };
