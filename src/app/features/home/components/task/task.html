@@ -18,11 +18,7 @@
   </div>
   <mat-divider />
   <div class="d-flex align-items-center gap-1">
-    <div
-      class="task-card-assignee-avatar br-round fc-white fw-bold fs-2xs bg-primary p-1 d-flex justify-content-center align-items-center"
-    >
-      {{ task()?.assignee?.name | nameLetters | uppercase }}
-    </div>
+    <app-assignee-avatar [assigneeName]="task()?.assignee?.name" />
     <p class="task-card-assignee-name fw-regular fs-xs fc-black">@{{ task()?.assignee?.name }}</p>
   </div>
 </section>
