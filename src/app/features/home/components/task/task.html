@@ -1,4 +1,8 @@
-<section class="task-card br-md border-light p-3 d-flex flex-column gap-3">
+<section
+  class="task-card br-md border-light p-3 d-flex flex-column gap-3"
+  [class.bg-error-light]="task()?.isOverdue"
+  [class.overdue]="task()?.isOverdue"
+>
   <p
     class="task-card-status px-2 py-1 br-sm fw-bold fs-xs"
     [class.bg-error-light]="task()?.priority === 'high'"

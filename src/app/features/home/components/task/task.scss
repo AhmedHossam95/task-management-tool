@@ -1,5 +1,8 @@
 .task-card {
   max-width: 400px;
+  &.overdue {
+    border-inline-start: 4px solid var(--mat-sys-error);
+  }
   .task-card-status {
     width: fit-content;
   }
