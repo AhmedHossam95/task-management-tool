@@ -17,6 +17,7 @@ export class KanbanColumnComponent {
   readonly count = input.required<number>();
   readonly columnId = input.required<string>();
   readonly connectedTo = input<string[]>([]);
+  readonly dragEnabled = input<boolean>(true);
 
   readonly taskDropped = output<CdkDragDrop<Task[]>>();
 

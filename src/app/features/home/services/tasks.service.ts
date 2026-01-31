@@ -9,8 +9,9 @@ import { ToastService } from '../../../shared/services/toast.service';
 import { withRetry } from '../../../shared/utils/http.utils';
 import { TASK_STATUS } from '../constants/tasks.constants';
 import { getStatusTransitionUpdates, withUpdatedTimestamp } from '../utils/tasks.utils';
-import { createTasksByStatusSignal, filterTasksByStatus } from '../utils/task-filters.util';
 import { executeOptimisticUpdate } from '../utils/optimistic-update.util';
+import { TasksFilterService } from './tasks-filter.service';
+import { filterByPriority, searchTasks, sortTasks } from '../utils/task-sort.util';
 
 @Injectable({
   providedIn: 'root',
@@ -18,6 +19,7 @@ import { executeOptimisticUpdate } from '../utils/optimistic-update.util';
 export class TasksService {
   private readonly http = inject(HttpClient);
   private readonly toastService = inject(ToastService);
+  private readonly filterService = inject(TasksFilterService);
 
   /**
    * httpResource for fetching tasks with automatic loading states
@@ -34,25 +36,71 @@ export class TasksService {
   /** Computed signal for tasks array (read-only) */
   readonly tasks = this._tasks.asReadonly();
 
-  /** Tasks filtered by status - sorted by order */
-  readonly todoTasks = createTasksByStatusSignal(this.tasks, TASK_STATUS.TODO as TaskStatus);
-  readonly inProgressTasks = createTasksByStatusSignal(
-    this.tasks,
-    TASK_STATUS.IN_PROGRESS as TaskStatus,
-  );
-  readonly doneTasks = createTasksByStatusSignal(this.tasks, TASK_STATUS.DONE as TaskStatus);
+  /**
+   * Filtered and sorted tasks based on current filter state
+   * Applies: search query, priority filter, and sorting
+   */
+  readonly filteredTasks = computed(() => {
+    let tasks = this.tasks();
 
-  /** Task counts by status */
-  readonly todoCount = computed(() => this.todoTasks().length);
-  readonly inProgressCount = computed(() => this.inProgressTasks().length);
-  readonly doneCount = computed(() => this.doneTasks().length);
+    // Apply search filter
+    tasks = searchTasks(tasks, this.filterService.searchQuery());
+
+    // Apply priority filter
+    tasks = filterByPriority(tasks, this.filterService.priorityFilter());
+
+    // Apply sorting
+    tasks = sortTasks(tasks, this.filterService.sortConfig());
+
+    return tasks;
+  });
+
+  /** Filtered tasks by status - for kanban columns (sorting applied in filteredTasks) */
+  readonly filteredTodoTasks = computed(() =>
+    this.filteredTasks().filter((t) => t.status === TASK_STATUS.TODO),
+  );
+
+  readonly filteredInProgressTasks = computed(() =>
+    this.filteredTasks().filter((t) => t.status === TASK_STATUS.IN_PROGRESS),
+  );
+
+  readonly filteredDoneTasks = computed(() =>
+    this.filteredTasks().filter((t) => t.status === TASK_STATUS.DONE),
+  );
+
+  /** Task counts by status (from filtered tasks) */
+  readonly filteredTodoCount = computed(() => this.filteredTodoTasks().length);
+  readonly filteredInProgressCount = computed(() => this.filteredInProgressTasks().length);
+  readonly filteredDoneCount = computed(() => this.filteredDoneTasks().length);
+
+  /** Total counts (unfiltered) for display */
+  readonly todoCount = computed(
+    () => this.tasks().filter((t) => t.status === TASK_STATUS.TODO).length,
+  );
+  readonly inProgressCount = computed(
+    () => this.tasks().filter((t) => t.status === TASK_STATUS.IN_PROGRESS).length,
+  );
+  readonly doneCount = computed(
+    () => this.tasks().filter((t) => t.status === TASK_STATUS.DONE).length,
+  );
+
+  /**
+   * Gets filtered tasks for a specific status (used for reordering)
+   */
+  private getFilteredTasksByStatus(status: TaskStatus): Task[] {
+    return this.filteredTasks()
+      .filter((t) => t.status === status)
+      .sort((a, b) => a.order - b.order);
+  }
 
   /**
    * Optimistically reorder tasks within the same column
    * Updates UI instantly, syncs to server in background
+   * Uses filtered tasks as the source for reordering
    */
   reorderTasksOptimistic(status: TaskStatus, previousIndex: number, currentIndex: number): void {
-    const statusTasks = filterTasksByStatus(this.tasks(), status);
+    // Get the currently displayed (filtered) tasks for this status
+    const statusTasks = this.getFilteredTasksByStatus(status);
     const reordered = [...statusTasks];
     moveItemInArray(reordered, previousIndex, currentIndex);
 

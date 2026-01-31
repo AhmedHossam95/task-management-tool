@@ -72,7 +72,7 @@ $font-weights: (
 @mixin generate-font-size-classes($sizes) {
   @each $name, $size in $sizes {
     .fs-#{$name} {
-      font-size: $size;
+      font-size: $size !important;
     }
   }
 }
@@ -80,7 +80,7 @@ $font-weights: (
 @mixin generate-font-weight-classes($weights) {
   @each $name, $weight in $weights {
     .fw-#{$name} {
-      font-weight: $weight;
+      font-weight: $weight !important;
     }
   }
 }
