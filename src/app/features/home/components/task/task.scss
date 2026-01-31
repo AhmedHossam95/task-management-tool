@@ -1,11 +1,29 @@
 .task-card {
   max-width: 400px;
+
   &.overdue {
     border-inline-start: 4px solid var(--mat-sys-error);
   }
+
   .task-card-status {
     width: fit-content;
+
+    &.low {
+      background-color: var(--mat-sys-success-container);
+      color: var(--mat-sys-success);
+    }
+
+    &.medium {
+      background-color: var(--mat-sys-tertiary-container);
+      color: var(--mat-sys-tertiary);
+    }
+
+    &.high {
+      background-color: var(--mat-sys-error-container);
+      color: var(--mat-sys-error);
+    }
   }
+
   .task-card-description {
     // TODO: make a mixin for this
     display: -webkit-box;
