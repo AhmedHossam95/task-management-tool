@@ -4,10 +4,60 @@ $border-radius: (
   lg: 12px,
   xl: 16px,
   xxl: 20px,
+  round: 50%,
 );
 
+// Border Color Classes
+.border-error-light {
+  border-color: var(--mat-sys-error-container);
+}
+
+.border-error {
+  border-color: var(--mat-sys-error);
+}
+
+.border-warning-light {
+  border-color: var(--mat-sys-tertiary-container);
+}
+
+.border-warning {
+  border-color: var(--mat-sys-tertiary);
+}
+
+.border-success-light {
+  border-color: var(--success-light);
+}
+
+.border-success {
+  border-color: var(--success);
+}
+
+.border-primary {
+  border-color: var(--mat-sys-primary);
+}
+
+.border-white {
+  border-color: var(--mat-sys-surface);
+}
+
+.border-black {
+  border-color: var(--mat-sys-on-surface);
+}
+
+.border-gray {
+  border-color: var(--gray);
+}
+
+.border-light-gray {
+  border-color: var(--light-gray);
+}
+
 .light-shadow {
-  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.08);
+  box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.08) !important;
+}
+
+.border-light {
+  border: 1px solid var(--mat-sys-surface-variant);
 }
 
 @mixin generate-border-radius-vars($radius) {

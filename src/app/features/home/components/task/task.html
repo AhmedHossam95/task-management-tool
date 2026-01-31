@@ -1,0 +1,30 @@
+<section class="task-card br-md border-light p-3 d-flex flex-column gap-3">
+  <p
+    class="task-card-status px-2 py-1 br-sm fw-bold fs-xs"
+    [class.bg-error-light]="task()?.priority === 'high'"
+    [class.bg-success-light]="task()?.priority === 'low'"
+    [class.bg-warning-light]="task()?.priority === 'medium'"
+    [class.fc-error]="task()?.priority === 'high'"
+    [class.fc-success]="task()?.priority === 'low'"
+    [class.fc-warning]="task()?.priority === 'medium'"
+  >
+    {{ task()?.priority | titlecase }}
+  </p>
+  <div class="task-card-header">
+    <h3 class="task-card-title fw-bold fs-md fc-black">{{ task()?.title }}</h3>
+    <p class="task-card-description fw-regular fs-sm fc-gray">{{ task()?.description }}</p>
+  </div>
+  <div>
+    <p class="task-card-due-date fw-regular fs-xs fc-gray">{{ task()?.dueDate }}</p>
+    <p class="task-card-tags fw-regular fs-sm fc-gray">{{ task()?.tags?.join(', ') }}</p>
+  </div>
+  <mat-divider />
+  <div class="d-flex align-items-center gap-1">
+    <div
+      class="task-card-assignee-avatar br-round fc-white fw-bold fs-2xs bg-primary p-1 d-flex justify-content-center align-items-center"
+    >
+      {{ task()?.assignee?.name | nameLetters | uppercase }}
+    </div>
+    <p class="task-card-assignee-name fw-regular fs-xs fc-black">@{{ task()?.assignee?.name }}</p>
+  </div>
+</section>

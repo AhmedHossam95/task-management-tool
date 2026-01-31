@@ -1,3 +1,51 @@
 .bg-surface-variant {
   background: var(--mat-sys-surface-variant);
 }
+
+.bg-error-light {
+  background-color: var(--mat-sys-error-container);
+}
+
+.bg-error {
+  background-color: var(--mat-sys-error);
+}
+
+.bg-warning-light {
+  background-color: var(--mat-sys-tertiary-container);
+}
+
+.bg-warning {
+  background-color: var(--mat-sys-tertiary);
+}
+
+.bg-success-light {
+  background-color: var(--success-light);
+}
+
+.bg-success {
+  background-color: var(--success);
+}
+
+.bg-primary {
+  background-color: var(--mat-sys-primary);
+}
+
+.bg-white {
+  background-color: var(--mat-sys-surface);
+}
+
+.bg-black {
+  background-color: var(--mat-sys-on-surface);
+}
+
+.bg-gray {
+  background-color: var(--gray);
+}
+
+.bg-light-gray {
+  background-color: var(--light-gray);
+}
+
+.bg-light {
+  background-color: var(--mat-sys-background);
+}

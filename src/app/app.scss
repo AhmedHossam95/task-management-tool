@@ -14,6 +14,10 @@
      causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
   flex: 1;
 
+  .mat-sidenav {
+    --mat-sidenav-container-shape: 0px;
+  }
+
   .mat-mdc-nav-list .mat-mdc-list-item {
     --mat-list-active-indicator-shape: var(--br-sm);
 

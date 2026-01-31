@@ -1,1 +1,5 @@
-<p>home works!</p>
+<article class="d-flex flex-column gap-3 bg-white p-3 br-md">
+  @for (task of tasks(); track task.id) {
+    <app-task [task]="task" />
+  }
+</article>
