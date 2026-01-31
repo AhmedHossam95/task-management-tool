@@ -42,7 +42,32 @@
         (selectionChange)="filterService.setPriority($event.value)"
       >
         @for (option of priorityOptions; track option.value) {
-          <mat-option [value]="option.value">{{ option.label }}</mat-option>
+          <mat-option class="fs-sm" [value]="option.value">{{ option.label }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Assignee Filter -->
+    <mat-form-field appearance="outline" class="assignee-field flex-shrink-0">
+      <mat-select
+        class="fs-sm"
+        [value]="filterService.assigneeFilter()"
+        (selectionChange)="filterService.setAssignee($event.value)"
+      >
+        <mat-select-trigger>
+          {{ selectedAssigneeLabel() }}
+        </mat-select-trigger>
+        <mat-option class="fs-sm" value="all">All Assignees</mat-option>
+        @for (user of users(); track user.id) {
+          <mat-option [value]="user.id">
+            <div class="d-flex align-items-center gap-2">
+              <app-assignee-avatar [assigneeName]="user.name" />
+              <div class="d-flex flex-column">
+                <span class="fs-sm">{{ user.name }}</span>
+                <span class="fs-xs fc-gray">{{ user.email }}</span>
+              </div>
+            </div>
+          </mat-option>
         }
       </mat-select>
     </mat-form-field>

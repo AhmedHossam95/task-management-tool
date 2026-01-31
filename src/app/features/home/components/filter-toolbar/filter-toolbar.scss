@@ -22,7 +22,8 @@
 
 // Form fields - Material compact appearance overrides
 .search-field,
-.priority-field {
+.priority-field,
+.assignee-field {
   ::ng-deep {
     .mat-mdc-form-field-subscript-wrapper {
       display: none;
@@ -59,6 +60,17 @@
 
 .priority-field {
   width: 150px;
+}
+
+.assignee-field {
+  width: 200px;
+
+  // Taller dropdown options for avatar + name + email layout
+  ::ng-deep .mat-mdc-option {
+    height: auto;
+    min-height: 48px;
+    padding: 8px 16px;
+  }
 }
 
 // Sort trigger button height

@@ -6,6 +6,9 @@ export type StatusFilter = 'all' | TaskStatus;
 /** Priority filter options - 'all' shows all priorities */
 export type PriorityFilter = 'all' | TaskPriority;
 
+/** Assignee filter options - 'all' shows all assignees, or specific user id */
+export type AssigneeFilter = 'all' | string;
+
 /** Available fields for sorting tasks */
 export type SortField = 'order' | 'priority' | 'createdAt';
 
@@ -22,6 +25,7 @@ export type TaskSortConfig = {
 export type TaskFilters = {
   status: StatusFilter;
   priority: PriorityFilter;
+  assignee: AssigneeFilter;
   search: string;
   sort: TaskSortConfig;
 };
@@ -30,6 +34,7 @@ export type TaskFilters = {
 export const DEFAULT_FILTERS: TaskFilters = {
   status: 'all',
   priority: 'all',
+  assignee: 'all',
   search: '',
   sort: { field: 'order', order: 'asc' },
 };

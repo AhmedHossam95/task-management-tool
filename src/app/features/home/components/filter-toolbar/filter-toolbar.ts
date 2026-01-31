@@ -7,6 +7,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { TasksFilterService } from '../../services/tasks-filter.service';
+import { UsersService } from '../../services/users.service';
+import { AssigneeAvatarComponent } from '../assignee-avatar/assignee-avatar.component';
 import {
   PRIORITY_FILTER_OPTIONS,
   SORT_OPTIONS,
@@ -26,6 +28,7 @@ import {
     MatIconModule,
     MatButtonModule,
     MatMenuModule,
+    AssigneeAvatarComponent,
   ],
   templateUrl: './filter-toolbar.html',
   styleUrl: './filter-toolbar.scss',
@@ -33,6 +36,18 @@ import {
 })
 export class FilterToolbarComponent {
   protected readonly filterService = inject(TasksFilterService);
+  private readonly usersService = inject(UsersService);
+
+  /** Users list for assignee filter dropdown */
+  protected readonly users = computed(() => this.usersService.users() ?? []);
+
+  /** Selected assignee label for display in the dropdown trigger */
+  protected readonly selectedAssigneeLabel = computed(() => {
+    const assigneeId = this.filterService.assigneeFilter();
+    if (assigneeId === 'all') return 'All Assignees';
+    const user = this.users().find((u) => u.id === assigneeId);
+    return user?.name ?? 'All Assignees';
+  });
 
   /** Filter options for UI */
   protected readonly statusOptions = STATUS_FILTER_OPTIONS;

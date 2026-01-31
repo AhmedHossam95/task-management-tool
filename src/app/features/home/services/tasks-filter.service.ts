@@ -1,8 +1,8 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { map } from 'rxjs';
 import {
+  AssigneeFilter,
   DEFAULT_FILTERS,
   PriorityFilter,
   SortField,
@@ -23,6 +23,9 @@ export class TasksFilterService {
 
   /** Priority filter signal */
   readonly priorityFilter = signal<PriorityFilter>(DEFAULT_FILTERS.priority);
+
+  /** Assignee filter signal */
+  readonly assigneeFilter = signal<AssigneeFilter>(DEFAULT_FILTERS.assignee);
 
   /** Search query signal */
   readonly searchQuery = signal<string>(DEFAULT_FILTERS.search);
@@ -54,6 +57,10 @@ export class TasksFilterService {
       this.priorityFilter.set(params['priority'] as PriorityFilter);
     }
 
+    if (params['assignee']) {
+      this.assigneeFilter.set(params['assignee'] as AssigneeFilter);
+    }
+
     if (params['search']) {
       this.searchQuery.set(params['search']);
     }
@@ -82,6 +89,14 @@ export class TasksFilterService {
   }
 
   /**
+   * Set assignee filter and sync to URL
+   */
+  setAssignee(assignee: AssigneeFilter): void {
+    this.assigneeFilter.set(assignee);
+    this.syncToUrl();
+  }
+
+  /**
    * Set search query and sync to URL
    */
   setSearch(query: string): void {
@@ -103,6 +118,7 @@ export class TasksFilterService {
   resetFilters(): void {
     this.statusFilter.set(DEFAULT_FILTERS.status);
     this.priorityFilter.set(DEFAULT_FILTERS.priority);
+    this.assigneeFilter.set(DEFAULT_FILTERS.assignee);
     this.searchQuery.set(DEFAULT_FILTERS.search);
     this.sortConfig.set(DEFAULT_FILTERS.sort);
     this.syncToUrl();
@@ -121,6 +137,10 @@ export class TasksFilterService {
 
     if (this.priorityFilter() !== DEFAULT_FILTERS.priority) {
       params['priority'] = this.priorityFilter();
+    }
+
+    if (this.assigneeFilter() !== DEFAULT_FILTERS.assignee) {
+      params['assignee'] = this.assigneeFilter();
     }
 
     if (this.searchQuery().trim()) {

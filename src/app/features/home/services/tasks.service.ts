@@ -11,7 +11,12 @@ import { TASK_STATUS } from '../constants/tasks.constants';
 import { getStatusTransitionUpdates, withUpdatedTimestamp } from '../utils/tasks.utils';
 import { executeOptimisticUpdate } from '../utils/optimistic-update.util';
 import { TasksFilterService } from './tasks-filter.service';
-import { filterByPriority, searchTasks, sortTasks } from '../utils/task-sort.util';
+import {
+  filterByAssignee,
+  filterByPriority,
+  searchTasks,
+  sortTasks,
+} from '../utils/task-sort.util';
 
 @Injectable({
   providedIn: 'root',
@@ -38,7 +43,7 @@ export class TasksService {
 
   /**
    * Filtered and sorted tasks based on current filter state
-   * Applies: search query, priority filter, and sorting
+   * Applies: search query, priority filter, assignee filter, and sorting
    */
   readonly filteredTasks = computed(() => {
     let tasks = this.tasks();
@@ -48,6 +53,9 @@ export class TasksService {
 
     // Apply priority filter
     tasks = filterByPriority(tasks, this.filterService.priorityFilter());
+
+    // Apply assignee filter
+    tasks = filterByAssignee(tasks, this.filterService.assigneeFilter());
 
     // Apply sorting
     tasks = sortTasks(tasks, this.filterService.sortConfig());
