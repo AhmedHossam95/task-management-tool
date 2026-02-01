@@ -7,15 +7,16 @@ import {
   OnInit,
   signal,
 } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { TitleCasePipe } from '@angular/common';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { MatDrawerMode, MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MediaMatcher } from '@angular/cdk/layout';
-import { TitleCasePipe } from '@angular/common';
-import { RouterLink, RouterLinkActive } from '@angular/router';
 import { HeaderComponent } from './shared/components/header/header';
+import { LoadingService } from './shared/services/loading.service';
 import { SIDENAV_ROUTES } from './shared/constants/sidenav.constants';
 import { Route } from './shared/models/sidenav.model';
 
@@ -28,6 +29,7 @@ import { Route } from './shared/models/sidenav.model';
     MatToolbarModule,
     MatListModule,
     MatIconModule,
+    MatProgressSpinnerModule,
     TitleCasePipe,
     RouterLinkActive,
     RouterLink,
@@ -44,6 +46,7 @@ export class App implements OnInit, OnDestroy {
   protected readonly sideNavMode = computed<MatDrawerMode>(() =>
     this.isSmallScreen() ? 'over' : 'side',
   );
+  protected readonly loadingService = inject(LoadingService);
 
   ngOnInit(): void {
     this.addMediaQueryListener();
