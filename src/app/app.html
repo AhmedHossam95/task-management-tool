@@ -35,4 +35,11 @@
       <router-outlet />
     </mat-sidenav-content>
   </mat-sidenav-container>
+
+  @if (loadingService.isLoading()) {
+    <div class="loading-overlay">
+      <div class="loading-overlay__backdrop"></div>
+      <mat-progress-spinner class="loading-overlay__spinner" diameter="64" mode="indeterminate" />
+    </div>
+  }
 </div>
