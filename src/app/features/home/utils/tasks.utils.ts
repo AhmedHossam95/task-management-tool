@@ -108,3 +108,39 @@ export function withUpdatedTimestamp<T extends object>(updates: T): T & { update
     updatedAt: createTimestamp(),
   };
 }
+
+/**
+ * Calculates if a task is overdue based on its dueDate and status
+ * - If status is 'done': preserves existing isOverdue value (shows if task was completed late)
+ * - Otherwise: compares dueDate with today's date
+ * @param task - The task to evaluate
+ * @returns true if task is overdue, false otherwise
+ */
+export function calculateIsOverdue(task: Task): boolean {
+  if (task.status === TASK_STATUS.DONE) {
+    return task.isOverdue ?? false;
+  }
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const dueDate = new Date(task.dueDate);
+  dueDate.setHours(0, 0, 0, 0);
+  return dueDate < today;
+}
+
+/**
+ * Updates a single task with calculated overdue status
+ * @param task - The task to update
+ * @returns A new task object with updated isOverdue field
+ */
+export function updateTaskOverdue(task: Task): Task {
+  return { ...task, isOverdue: calculateIsOverdue(task) };
+}
+
+/**
+ * Updates an array of tasks with calculated overdue status
+ * @param tasks - Array of tasks to update
+ * @returns New array of tasks with updated isOverdue fields
+ */
+export function updateTasksOverdue(tasks: Task[]): Task[] {
+  return tasks.map(updateTaskOverdue);
+}
