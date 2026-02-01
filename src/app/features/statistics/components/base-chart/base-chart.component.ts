@@ -3,7 +3,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { BaseChartDirective } from 'ng2-charts';
 import { ChartData, ChartOptions } from 'chart.js';
-import { createChartOptions } from '../../../../shared/config/chart-options.config';
+import { createChartOptions } from '../../constants/config/chart-options.config';
 
 /**
  * Generic reusable chart component for rendering pie and doughnut charts.

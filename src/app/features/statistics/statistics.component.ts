@@ -3,7 +3,7 @@ import { StatisticsService } from './services/statistics.service';
 import { TasksService } from '../home/services/tasks.service';
 import { StatCardComponent } from './components/stat-card/stat-card.component';
 import { BaseChartComponent } from './components/base-chart/base-chart.component';
-import { CHART_COLORS } from '../../shared/constants/chart-colors.constants';
+import { CHART_COLORS } from './constants/chart-colors.constants';
 
 /**
  * Statistics page component that displays task analytics.

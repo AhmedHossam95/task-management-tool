@@ -1,5 +1,5 @@
 import { ChartOptions } from 'chart.js';
-import { formatChartTooltipLabel } from '../utils/chart.utils';
+import { formatChartTooltipLabel } from '../../../../shared/utils/chart.utils';
 
 /**
  * Factory function to create consistent chart options for pie and doughnut charts.
