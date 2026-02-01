@@ -1,7 +1,7 @@
 <div class="kanban-board-container">
   <app-filter-toolbar (createTask)="onCreateTask()" />
 
-  <section class="kanban-board d-flex gap-3">
+  <section cdkScrollable class="kanban-board d-flex gap-3">
     @if (visibleColumns().includes('todo')) {
       <app-kanban-column
         columnId="todo"

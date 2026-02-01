@@ -12,11 +12,12 @@ import {
   TaskDialogData,
   TaskDialogResult,
 } from './components/task-dialog/task-dialog';
+import { CdkScrollable } from '@angular/cdk/scrolling';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-home',
-  imports: [KanbanColumnComponent, FilterToolbarComponent],
+  imports: [KanbanColumnComponent, FilterToolbarComponent, CdkScrollable],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })

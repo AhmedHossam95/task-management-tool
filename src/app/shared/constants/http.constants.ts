@@ -2,6 +2,8 @@
  * HTTP status code constants to avoid magic numbers
  * Follows Open/Closed Principle - extend by adding new constants
  */
+import { HttpContextToken } from '@angular/common/http';
+
 export const HTTP_STATUS = {
   /** Network error - no connection */
   NETWORK_ERROR: 0,
@@ -30,3 +32,19 @@ export const HTTP_ERROR_MESSAGES: Record<number, string> = {
 
 export const DEFAULT_ERROR_MESSAGE = 'An unexpected error occurred. Please try again.';
 export const SERVER_ERROR_MESSAGE = 'Server error. Please try again later.';
+
+/**
+ * Cache configuration for HTTP response caching
+ */
+export const CACHE_CONFIG = {
+  /** Cache time-to-live: 24 hours in milliseconds */
+  TTL_MS: 24 * 60 * 60 * 1000,
+  /** localStorage key prefix for cached items */
+  STORAGE_PREFIX: 'app_cache_',
+} as const;
+
+/**
+ * HTTP Context token to skip loading indicator for background requests
+ * Used by LoadingInterceptor to avoid showing loader during stale-while-revalidate background fetches
+ */
+export const SKIP_LOADING = new HttpContextToken<boolean>(() => false);
