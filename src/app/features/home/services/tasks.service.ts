@@ -11,6 +11,7 @@ import { TASK_STATUS } from '../constants/tasks.constants';
 import {
   formatDateForBackend,
   getStatusTransitionUpdates,
+  updateTasksOverdue,
   withUpdatedTimestamp,
 } from '../utils/tasks.utils';
 import { executeOptimisticUpdate } from '../utils/optimistic-update.util';
@@ -36,7 +37,9 @@ export class TasksService {
   }));
 
   /** Writable signal that syncs from httpResource, supports optimistic updates */
-  private readonly _tasks = linkedSignal(() => this.tasksResource.value() ?? []);
+  private readonly _tasks = linkedSignal(() =>
+    updateTasksOverdue(this.tasksResource.value() ?? []),
+  );
 
   /** Computed signal for tasks array (read-only) */
   readonly tasks = this._tasks.asReadonly();
@@ -102,6 +105,9 @@ export class TasksService {
   readonly lowPriorityCount = computed(
     () => this.tasks().filter((t) => t.priority === 'low').length,
   );
+
+  /** Overdue count (unfiltered) for analytics */
+  readonly overdueCount = computed(() => this.tasks().filter((t) => t.isOverdue).length);
 
   /**
    * Gets filtered tasks for a specific status (used for reordering)
