@@ -1,6 +1,10 @@
-import { ChangeDetectionStrategy, Component, computed, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { BreakpointObserver } from '@angular/cdk/layout';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
 import { MatDialog } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 import { TasksService } from './services/tasks.service';
 import { TasksFilterService } from './services/tasks-filter.service';
 import { UsersService } from './services/users.service';
@@ -13,11 +17,21 @@ import {
   TaskDialogResult,
 } from './components/task-dialog/task-dialog';
 import { CdkScrollable } from '@angular/cdk/scrolling';
+import { map } from 'rxjs';
+
+/** Mobile breakpoint (max-width: 425px) */
+const MOBILE_BREAKPOINT = '(max-width: 425px)';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-home',
-  imports: [KanbanColumnComponent, FilterToolbarComponent, CdkScrollable],
+  imports: [
+    KanbanColumnComponent,
+    FilterToolbarComponent,
+    CdkScrollable,
+    MatButtonModule,
+    MatIconModule,
+  ],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
@@ -26,6 +40,16 @@ export class HomeComponent {
   private readonly filterService = inject(TasksFilterService);
   private readonly usersService = inject(UsersService);
   private readonly dialog = inject(MatDialog);
+  private readonly breakpointObserver = inject(BreakpointObserver);
+
+  /** Whether the viewport is mobile */
+  protected readonly isMobile = toSignal(
+    this.breakpointObserver.observe(MOBILE_BREAKPOINT).pipe(map((result) => result.matches)),
+    { initialValue: false },
+  );
+
+  /** Current column index for mobile navigation */
+  protected readonly currentColumnIndex = signal(0);
 
   /** Use filtered tasks for display */
   protected readonly todoTasks = this.tasksService.filteredTodoTasks;
@@ -46,8 +70,35 @@ export class HomeComponent {
     return [status];
   });
 
-  /** Column IDs for drag-drop connectivity (only visible columns) */
-  protected readonly columnIds = this.visibleColumns;
+  /** Column IDs for drag-drop connectivity (empty on mobile to disable cross-column drag) */
+  protected readonly columnIds = computed(() => {
+    if (this.isMobile()) {
+      return []; // Disable cross-column drag on mobile
+    }
+    return this.visibleColumns();
+  });
+
+  /** Whether left navigation is possible */
+  protected readonly canNavigateLeft = computed(() => this.currentColumnIndex() > 0);
+
+  /** Whether right navigation is possible */
+  protected readonly canNavigateRight = computed(
+    () => this.currentColumnIndex() < this.visibleColumns().length - 1,
+  );
+
+  /** Navigate to previous column */
+  navigateLeft(): void {
+    if (this.canNavigateLeft()) {
+      this.currentColumnIndex.update((i) => i - 1);
+    }
+  }
+
+  /** Navigate to next column */
+  navigateRight(): void {
+    if (this.canNavigateRight()) {
+      this.currentColumnIndex.update((i) => i + 1);
+    }
+  }
 
   onTaskDrop(event: CdkDragDrop<Task[]>): void {
     const task = event.item.data as Task;

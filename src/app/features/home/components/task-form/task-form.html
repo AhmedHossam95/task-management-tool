@@ -55,6 +55,18 @@
     </div>
   </div>
 
+  <!-- Status (mobile edit mode only) -->
+  @if (isEditMode() && isMobile()) {
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-label>Status</mat-label>
+      <mat-select formControlName="status">
+        @for (option of statusOptions; track option.value) {
+          <mat-option [value]="option.value">{{ option.label }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  }
+
   <!-- Assignee -->
   <mat-form-field appearance="outline" class="w-100">
     <mat-label>Assignee</mat-label>
