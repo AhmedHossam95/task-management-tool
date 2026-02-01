@@ -1,59 +1,127 @@
-# TaskManagementTool
+# 🚀 Taskito
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.15.
+Taskito is a modern, high-performance task management tool built with **Angular 20**. It features a reactive UI, advanced caching strategies, and a feature-based architecture designed for scalability and maintainability.
 
-## Development server
+---
 
-To start a local development server, run:
+## 🏗️ Architecture & Design Decisions
 
+### Feature-Based Structure
+The project follows a **Feature-Based Architecture**, where code is organized by domain rather than type. This reduces cognitive load and improves modularity.
+- `src/app/features/`: Contains domain-specific logic (e.g., `home`, `statistics`).
+- `src/app/shared/`: Reusable components, services, and utilities shared across features.
+
+### SOLID Principles
+- **Single Responsibility (SRP)**: Each component and service has one clear purpose.
+- **Dependency Inversion (DIP)**: Components depend on service abstractions rather than concrete implementations for data fetching.
+
+### Design Patterns
+- **Facade Pattern**: Services like `TasksService` act as a facade, coordinating complex logic between multiple data sources and utilities, providing a simplified interface for components.
+- **Optimistic UI Pattern**: The `executeOptimisticUpdate` utility provides immediate feedback to the user while synchronizing data with the backend in the background.
+- **Strategy Pattern**: Implemented in sorting utilities (`task-sort.util.ts`) to allow dynamic swapping of sorting algorithms based on user configuration.
+- **Interceptor Pattern**: Custom HTTP interceptors handle cross-cutting concerns like caching (`CachingInterceptor`), loading states (`LoadingInterceptor`), and artificial delays (`MockDelayInterceptor`).
+- **Singleton Pattern**: Services are provided at the root level, ensuring unique instances across the application.
+- **Observer/Reactive Pattern**: Extensive use of **Angular Signals** and **RxJS** to create reactive data streams and side effects.
+
+### Business Decisions
+- **Kanban Behavior**: 
+    - When sorting or filtering is active, reordering tasks within the same column is disabled to prevent confusion.
+    - Moving tasks between columns is always enabled; when a task is moved to a new column while there is filteration/ sorting applied , it is automatically appended to the end of that column.
+- **Mobile Constraints**: Drag-and-drop functionality is disabled on mobile devices to optimize for touch interactions (status fields are used instead).
+- **Data Sources**: All statistics and analytics are derived directly from the `tasks` data in the JSON server, ensuring a single source of truth without requiring a dedicated statistics endpoint.
+- **Date Validation**:
+    - **New Tasks**: The minimum selectable due date is set to tomorrow.
+    - **Existing Tasks**: When editing, the current due date remains valid even if it is in the past, but changes must adhere to the "tomorrow" rule.
+- **Overdue Logic**: Upon retrieval from the backend, any task that is not in the "Done" status and has a due date prior to today is automatically flagged as "overdue" in the UI.
+- **Stale-While-Revalidate (SWR) UX**: When the background fetch detects fresh data that differs from the cache, a subtle animated refresh button is displayed. Data is only updated in the UI when the user explicitly clicks this button, preventing jarring content jumps.
+
+### State Management
+- **Angular Signals**: The application leverages `signal`, `computed`, and `resource` for fine-grained reactivity.
+- **Modern Change Detection**: Components use `ChangeDetectionStrategy.OnPush` to minimize dirty checking and improve performance.
+
+---
+
+## ⚡ Performance Optimizations
+
+- **Stale-While-Revalidate (SWR) Caching**: A custom `CachingInterceptor` serves cached data immediately while fetching fresh data in the background.
+- **Lazy Loading**: Route-based code splitting ensures that feature modules are only loaded when needed.
+- **Fetch API**: Uses the modern `fetch` backend for HTTP requests.
+
+---
+
+## 🛠️ Tech Stack & Libraries
+
+- **Framework**: [Angular 20](https://angular.dev/)
+- **UI Components**: [Angular Material](https://material.angular.io/)
+- **Charts**: [ng2-charts](https://valor-software.com/ng2-charts/) (Chart.js)
+- **Styling**: Vanilla SCSS, Bootstrap grid
+- **Mock Server**: [json-server](https://github.com/typicode/json-server)
+- **Linting & Formatting**: ESLint + Prettier
+- **Git Hooks**: Husky + lint-staged
+
+---
+
+## 🚀 Setup & Installation
+
+### Prerequisites
+- Node.js (v18+)
+- npm
+
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd task-management-tool
+   ```
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+### Running the Application
+To run the frontend and the mock backend concurrently:
 ```bash
-ng serve
+npm run start:dev
 ```
+- Frontend: [http://localhost:4200](http://localhost:4200)
+- Backend: [http://localhost:3000](http://localhost:3000)
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## 📜 Available Scripts
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+| Command | Description |
+| :--- | :--- |
+| `npm run start` | Run the Angular dev server. |
+| `npm run server` | Run the JSON-server mock backend. |
+| `npm run start:dev` | Run both frontend and backend concurrently. |
+| `npm run build` | Build the project for production. |
+| `npm run test` | Run unit tests using Karma. |
+| `npm run lint` | Run ESLint to find and fix code issues. |
+| `npm run generate-data` | Run the script to generate mock data. |
 
-```bash
-ng generate component component-name
-```
+---
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## ⚙️ Environment Configuration
 
-```bash
-ng generate --help
-```
+Configuration is managed in `src/app/app.config.ts`.
+- `ENABLE_MOCK_DELAY`: Toggle to simulate network latency (200ms) for development testing.
+- HTTP Interceptors are ordered for optimal performance: `Loading` -> `MockDelay` -> `Caching`.
 
-## Building
+---
 
-To build the project run:
+## 🧪 Testing Strategy
 
-```bash
-ng build
-```
+- **Unit Testing**: Powered by **Jasmine** and **Karma**.
+- **Coverage**: Report can be generated via `ng test --code-coverage`.
+- **Pre-commit Hooks**: Husky ensures that linting passes before code is committed.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+---
 
-## Running unit tests
+## 🚧 Known Limitations & Future Improvements
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+- **Authentication**: Currently lacks a real auth flow (uses local mock data).
+- **Offline Mode**: Basic SWR caching is implemented, but full PWA support is a future goal.
+- **Drag & Drop**: Kanban board mobile enhancements should be added in the future (We can also add order field in the task form itself).
+- **Internationalization**: i18n support planned for future releases.
 
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
