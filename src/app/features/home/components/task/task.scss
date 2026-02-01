@@ -1,8 +1,6 @@
 .task-card {
   max-width: 400px;
-  transition:
-    box-shadow 0.2s ease,
-    transform 0.2s ease;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
 
   &.clickable {
     cursor: pointer;
@@ -14,8 +12,8 @@
     }
 
     &:focus {
-      outline: 2px solid var(--mat-sys-primary);
-      outline-offset: 2px;
+        border-color: var(--mat-sys-primary);
+
     }
   }
 

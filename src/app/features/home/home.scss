@@ -36,4 +36,6 @@
   overflow-x: auto;
   overflow-y: hidden;
   padding: 1rem 0;
+  scroll-behavior: smooth;
+  overscroll-behavior-x: contain;
 }

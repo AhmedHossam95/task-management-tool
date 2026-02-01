@@ -13,8 +13,6 @@ export class LoadingService {
   }
 
   finishRequest(): void {
-    setTimeout(() => {
-      this.activeRequests.update((count) => Math.max(0, count - 1));
-    }, 500);
+    this.activeRequests.update((count) => Math.max(0, count - 1));
   }
 }

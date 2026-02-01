@@ -1,4 +1,4 @@
-import { computed, inject, Injectable, linkedSignal } from '@angular/core';
+import { computed, effect, inject, Injectable, linkedSignal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { httpResource } from '@angular/common/http';
 import { moveItemInArray } from '@angular/cdk/drag-drop';
@@ -18,6 +18,7 @@ import { executeOptimisticUpdate } from '../utils/optimistic-update.util';
 import { TasksFilterService } from './tasks-filter.service';
 import { sortTasks } from '../utils/task-sort.util';
 import { filterByAssignee, filterByPriority, searchTasks } from '../utils/task-filters.util';
+import { CacheService } from '../../../shared/services/cache.service';
 
 @Injectable({
   providedIn: 'root',
@@ -26,6 +27,15 @@ export class TasksService {
   private readonly http = inject(HttpClient);
   private readonly toastService = inject(ToastService);
   private readonly filterService = inject(TasksFilterService);
+  private readonly cacheService = inject(CacheService);
+
+  /** Cache key for tasks - matches the URL used by httpResource */
+  private readonly TASKS_CACHE_KEY = API_URL.TASKS;
+
+  /** Invalidate tasks cache after successful mutations */
+  private invalidateTasksCache(): void {
+    this.cacheService.invalidate(this.TASKS_CACHE_KEY);
+  }
 
   /**
    * httpResource for fetching tasks with automatic loading states
@@ -110,6 +120,17 @@ export class TasksService {
   readonly overdueCount = computed(() => this.tasks().filter((t) => t.isOverdue).length);
 
   /**
+   * Effect to reload tasks when cache refresh is triggered
+   * Listens to cache service refresh signal for stale-while-revalidate pattern
+   */
+  private readonly refreshEffect = effect(() => {
+    // Trigger when refresh signal changes
+    if (this.cacheService.refreshTriggered() > 0) {
+      this.tasksResource.reload();
+    }
+  });
+
+  /**
    * Gets filtered tasks for a specific status (used for reordering)
    */
   private getFilteredTasksByStatus(status: TaskStatus): Task[] {
@@ -134,6 +155,7 @@ export class TasksService {
       optimisticUpdate: (tasks) => this.applyReorder(tasks, reordered),
       persistFn: () => this.persistReorder(reordered, previousIndex, currentIndex),
       onError: () => this.toastService.error('Failed to save task order. Please try again.'),
+      onSuccess: () => this.invalidateTasksCache(),
     });
   }
 
@@ -182,6 +204,7 @@ export class TasksService {
         this.applyMoveToColumn(tasks, task, newStatus, targetIndex, updatedTargetTasks),
       persistFn: () => this.persistMoveToColumn(task, newStatus, targetIndex, updatedTargetTasks),
       onError: () => this.toastService.error('Failed to move task. Please try again.'),
+      onSuccess: () => this.invalidateTasksCache(),
     });
   }
 
@@ -309,7 +332,10 @@ export class TasksService {
       optimisticUpdate: (tasks) => [...tasks, newTask],
       persistFn: () => this.http.post<Task>(`${API_URL.TASKS}`, newTask).pipe(withRetry()),
       onError: () => this.toastService.error('Failed to create task. Please try again.'),
-      onSuccess: () => this.toastService.success('Task created successfully.'),
+      onSuccess: () => {
+        this.invalidateTasksCache();
+        this.toastService.success('Task created successfully.');
+      },
     });
   }
 
@@ -334,7 +360,10 @@ export class TasksService {
           .patch(`${API_URL.TASKS}/${taskId}`, withUpdatedTimestamp(formattedUpdates))
           .pipe(withRetry()),
       onError: () => this.toastService.error('Failed to update task. Please try again.'),
-      onSuccess: () => this.toastService.success('Task updated successfully.'),
+      onSuccess: () => {
+        this.invalidateTasksCache();
+        this.toastService.success('Task updated successfully.');
+      },
     });
   }
 
@@ -347,7 +376,10 @@ export class TasksService {
       optimisticUpdate: (tasks) => tasks.filter((t) => t.id !== taskId),
       persistFn: () => this.http.delete(`${API_URL.TASKS}/${taskId}`).pipe(withRetry()),
       onError: () => this.toastService.error('Failed to delete task. Please try again.'),
-      onSuccess: () => this.toastService.success('Task deleted successfully.'),
+      onSuccess: () => {
+        this.invalidateTasksCache();
+        this.toastService.success('Task deleted successfully.');
+      },
     });
   }
 }

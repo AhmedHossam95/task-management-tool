@@ -7,4 +7,20 @@
     <img alt="App Logo" class="logo" height="32" ngSrc="{{ logo }}" width="32" />
   }
   <h1 class="ms-2 fs-lg fc-primary">{{ title }}</h1>
+
+  <span class="spacer"></span>
+
+  @if (hasNewData()) {
+    <button
+      aria-label="Refresh data"
+      class="refresh-btn"
+      color="primary"
+      matButton="filled"
+      type="button"
+      (click)="onRefresh()"
+    >
+      <mat-icon>refresh</mat-icon>
+      <span class="ms-1">New data available</span>
+    </button>
+  }
 </mat-toolbar>

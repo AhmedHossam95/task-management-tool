@@ -1,8 +1,9 @@
-import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, output } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { NgOptimizedImage } from '@angular/common';
+import { CacheService } from '../../services/cache.service';
 
 @Component({
   selector: 'app-header',
@@ -16,4 +17,16 @@ export class HeaderComponent {
   protected readonly toggleSidenav = output<void>();
   protected readonly logo = 'assets/icons/logo.png';
   protected readonly title = 'Taskito';
+
+  private readonly cacheService = inject(CacheService);
+
+  // Expose hasNewData from cache service to template
+  protected readonly hasNewData = this.cacheService.hasNewData;
+
+  /**
+   * Apply pending updates when user clicks refresh button
+   */
+  protected onRefresh(): void {
+    this.cacheService.applyPendingUpdates();
+  }
 }
