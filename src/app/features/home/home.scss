@@ -39,3 +39,22 @@
   scroll-behavior: smooth;
   overscroll-behavior-x: contain;
 }
+
+.mobile-nav {
+  background-color: var(--mat-sys-surface-container-low, #f5f5f5);
+  border-radius: 8px;
+  margin: 0.5rem 0;
+}
+
+@media screen and (max-width: 425px) {
+  .kanban-board {
+    overflow-x: hidden;
+    padding: 0.5rem 0;
+  }
+
+  .kanban-board app-kanban-column {
+    width: 100%;
+    min-width: 100%;
+    flex: 0 0 100%;
+  }
+}

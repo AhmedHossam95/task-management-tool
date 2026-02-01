@@ -1,37 +1,74 @@
 <div class="kanban-board-container">
   <app-filter-toolbar (createTask)="onCreateTask()" />
 
-  <section cdkScrollable class="kanban-board d-flex gap-3">
-    @if (visibleColumns().includes('todo')) {
+  <!-- Mobile Navigation -->
+  @if (isMobile() && visibleColumns().length > 1) {
+    <div class="mobile-nav d-flex align-items-center justify-content-between gap-2 px-2 py-1">
+      <button
+        aria-label="Previous column"
+        mat-icon-button
+        [disabled]="!canNavigateLeft()"
+        (click)="navigateLeft()"
+      >
+        <mat-icon>chevron_left</mat-icon>
+      </button>
+      <span class="fw-semibold fs-md"
+        >{{ currentColumnIndex() + 1 }} / {{ visibleColumns().length }}</span
+      >
+      <button
+        aria-label="Next column"
+        mat-icon-button
+        [disabled]="!canNavigateRight()"
+        (click)="navigateRight()"
+      >
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+    </div>
+  }
+
+  <section cdkScrollable class="kanban-board d-flex gap-3 mx-auto">
+    @if (
+      visibleColumns().includes('todo') &&
+      (!isMobile() || visibleColumns()[currentColumnIndex()] === 'todo')
+    ) {
       <app-kanban-column
         columnId="todo"
         title="Todo"
         [connectedTo]="columnIds()"
         [count]="todoCount()"
+        [dragEnabled]="!isMobile()"
         [tasks]="todoTasks()"
         (taskClick)="onTaskClick($event)"
         (taskDropped)="onTaskDrop($event)"
       />
     }
 
-    @if (visibleColumns().includes('in_progress')) {
+    @if (
+      visibleColumns().includes('in_progress') &&
+      (!isMobile() || visibleColumns()[currentColumnIndex()] === 'in_progress')
+    ) {
       <app-kanban-column
         columnId="in_progress"
         title="In Progress"
         [connectedTo]="columnIds()"
         [count]="inProgressCount()"
+        [dragEnabled]="!isMobile()"
         [tasks]="inProgressTasks()"
         (taskClick)="onTaskClick($event)"
         (taskDropped)="onTaskDrop($event)"
       />
     }
 
-    @if (visibleColumns().includes('done')) {
+    @if (
+      visibleColumns().includes('done') &&
+      (!isMobile() || visibleColumns()[currentColumnIndex()] === 'done')
+    ) {
       <app-kanban-column
         columnId="done"
         title="Done"
         [connectedTo]="columnIds()"
         [count]="doneCount()"
+        [dragEnabled]="!isMobile()"
         [tasks]="doneTasks()"
         (taskClick)="onTaskClick($event)"
         (taskDropped)="onTaskDrop($event)"

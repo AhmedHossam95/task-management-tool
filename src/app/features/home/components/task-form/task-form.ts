@@ -28,7 +28,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
-import { Assignee, Task, TaskPriority } from '../../models/tasks.model';
+import { Assignee, Task, TaskPriority, TaskStatus } from '../../models/tasks.model';
 import { AssigneeAvatarComponent } from '../assignee-avatar/assignee-avatar.component';
 import { TaskFormFooterComponent } from '../task-form-footer/task-form-footer';
 import { parseDateFromBackend } from '../../utils/tasks.utils';
@@ -43,6 +43,7 @@ type TaskFormGroup = FormGroup<{
   dueDate: FormControl<string | Date>;
   assignee: FormControl<string>;
   tags: FormArray<FormControl<string>>;
+  status: FormControl<TaskStatus>;
 }>;
 
 @Component({
@@ -72,6 +73,9 @@ export class TaskFormComponent implements OnInit {
   /** Task to edit (null for create mode) */
   readonly task = input<Task | null>(null);
 
+  /** Whether the view is mobile */
+  readonly isMobile = input<boolean>(false);
+
   /** Available users for assignee selection */
   readonly users = input.required<Assignee[]>();
 
@@ -98,6 +102,13 @@ export class TaskFormComponent implements OnInit {
     { value: 'high', label: 'High' },
     { value: 'medium', label: 'Medium' },
     { value: 'low', label: 'Low' },
+  ];
+
+  /** Status options (for mobile editing) */
+  readonly statusOptions: { value: TaskStatus; label: string }[] = [
+    { value: 'todo', label: 'Todo' },
+    { value: 'in_progress', label: 'In Progress' },
+    { value: 'done', label: 'Done' },
   ];
 
   /** Minimum date for date picker (today) */
@@ -131,6 +142,7 @@ export class TaskFormComponent implements OnInit {
           priority: task.priority,
           dueDate: task.dueDate,
           assignee: task.assignee.id,
+          status: task.status,
         });
         // Clear and repopulate tags FormArray
         this.tagsArray.clear();
@@ -142,6 +154,7 @@ export class TaskFormComponent implements OnInit {
           priority: 'medium',
           dueDate: '',
           assignee: '',
+          status: 'todo',
         });
         this.tagsArray.clear();
       }
@@ -163,6 +176,7 @@ export class TaskFormComponent implements OnInit {
       ]),
       assignee: this.fb.nonNullable.control('', Validators.required),
       tags: this.fb.array<FormControl<string>>([]),
+      status: this.fb.nonNullable.control<TaskStatus>('todo'),
     });
   }
 
@@ -200,6 +214,11 @@ export class TaskFormComponent implements OnInit {
       assignee: selectedUser,
       tags: formValue.tags,
     };
+
+    // Include status if editing on mobile (to allow moving between columns)
+    if (this.isEditMode() && this.isMobile()) {
+      taskData.status = formValue.status;
+    }
 
     this.save.emit(taskData);
   }

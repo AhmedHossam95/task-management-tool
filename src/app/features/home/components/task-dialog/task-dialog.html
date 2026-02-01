@@ -1,5 +1,6 @@
 <div mat-dialog-content>
   <app-task-form
+    [isMobile]="isMobile()"
     [task]="data.task"
     [users]="data.users"
     (closeModal)="onCloseModal()"
